@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import db from "@/lib/db";
 import { getSession } from "@/lib/auth";
 import { genererCodeInscription } from "@/lib/codes";
+import { notifier, destinatairesGroupe } from "@/lib/notifications";
 
 async function requireAdmin() {
   const session = await getSession();
@@ -113,10 +114,60 @@ export async function createSession(formData: FormData) {
   const debut = new Date(`${date}T${String(h1).padStart(2, "0")}:00:00`);
   const fin = new Date(`${date}T${String(h2).padStart(2, "0")}:00:00`);
 
-  db.prepare(
-    `INSERT INTO sessions_formation (groupe_id, module_id, formateur_id, lieu, date, creneau, debut, fin)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
-  ).run(groupeId, moduleId, formateurId, lieu || null, date, creneau, debut.toISOString(), fin.toISOString());
+  const result = db
+    .prepare(
+      `INSERT INTO sessions_formation (groupe_id, module_id, formateur_id, lieu, date, creneau, debut, fin)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+    )
+    .run(groupeId, moduleId, formateurId, lieu || null, date, creneau, debut.toISOString(), fin.toISOString());
+
+  const module_ = db.prepare("SELECT nom FROM modules WHERE id = ?").get(moduleId) as
+    | { nom: string }
+    | undefined;
+  const dateLabel = debut.toLocaleDateString("fr-FR", { weekday: "long", day: "2-digit", month: "long" });
+  notifier(
+    destinatairesGroupe(groupeId, formateurId),
+    "seance_creee",
+    `Nouvelle séance ajoutée à votre planning : ${module_?.nom ?? "Module"} le ${dateLabel}.`,
+    Number(result.lastInsertRowid)
+  );
+
+  revalidatePath("/admin");
+  revalidatePath("/planning");
+}
+
+export async function supprimerSession(formData: FormData) {
+  await requireAdmin();
+  const sessionId = Number(formData.get("session_id"));
+  if (!sessionId) return;
+
+  const seance = db
+    .prepare(
+      `SELECT s.groupe_id, s.formateur_id, s.debut, m.nom as module_nom
+       FROM sessions_formation s JOIN modules m ON m.id = s.module_id
+       WHERE s.id = ?`
+    )
+    .get(sessionId) as
+    | { groupe_id: number; formateur_id: number | null; debut: string; module_nom: string }
+    | undefined;
+  if (!seance) return;
+
+  db.prepare("DELETE FROM presences WHERE session_id = ?").run(sessionId);
+  db.prepare("DELETE FROM emargements WHERE session_id = ?").run(sessionId);
+  db.prepare("DELETE FROM notifications WHERE session_id = ?").run(sessionId);
+  db.prepare("DELETE FROM sessions_formation WHERE id = ?").run(sessionId);
+
+  const dateLabel = new Date(seance.debut).toLocaleDateString("fr-FR", {
+    weekday: "long",
+    day: "2-digit",
+    month: "long",
+  });
+  notifier(
+    destinatairesGroupe(seance.groupe_id, seance.formateur_id),
+    "seance_annulee",
+    `Séance annulée : ${seance.module_nom} du ${dateLabel} a été retirée du planning.`
+  );
+
   revalidatePath("/admin");
   revalidatePath("/planning");
 }

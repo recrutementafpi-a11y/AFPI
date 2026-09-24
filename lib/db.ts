@@ -77,6 +77,20 @@ db.exec(`
     valide_at TEXT NOT NULL DEFAULT (datetime('now')),
     UNIQUE(session_id, stagiaire_id)
   );
+
+  CREATE TABLE IF NOT EXISTS notifications (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL REFERENCES users(id),
+    type TEXT NOT NULL CHECK (
+      type IN ('seance_creee', 'seance_annulee', 'signature', 'presence_validee', 'presence_absente')
+    ),
+    message TEXT NOT NULL,
+    session_id INTEGER REFERENCES sessions_formation(id),
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    read_at TEXT
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_notifications_user ON notifications(user_id, read_at);
 `);
 
 export default db;

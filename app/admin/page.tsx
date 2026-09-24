@@ -10,6 +10,7 @@ import {
   createModule,
   assignModule,
   createSession,
+  supprimerSession,
 } from "./actions";
 
 interface Groupe {
@@ -67,6 +68,27 @@ export default async function AdminPage() {
     .all() as UserRow[];
 
   const stagiaireCount = users.filter((u) => u.role === "stagiaire").length;
+
+  const seances = db
+    .prepare(
+      `SELECT s.id, m.nom as module_nom, g.nom as groupe_nom, s.debut, s.creneau,
+              u.prenom as formateur_prenom, u.nom as formateur_nom
+       FROM sessions_formation s
+       JOIN modules m ON m.id = s.module_id
+       JOIN groupes g ON g.id = s.groupe_id
+       LEFT JOIN users u ON u.id = s.formateur_id
+       ORDER BY s.debut DESC
+       LIMIT 20`
+    )
+    .all() as {
+    id: number;
+    module_nom: string;
+    groupe_nom: string;
+    debut: string;
+    creneau: "matin" | "apres-midi";
+    formateur_prenom: string | null;
+    formateur_nom: string | null;
+  }[];
 
   return (
     <>
@@ -228,6 +250,61 @@ export default async function AdminPage() {
             </label>
             <button className={`${primaryBtnClass} sm:col-span-2 w-fit`}>Créer la séance</button>
           </form>
+        </section>
+
+        <section>
+          <h2 className="font-extrabold text-slate-900 mb-1">Séances planifiées</h2>
+          <p className="text-slate-500 text-sm mb-4">
+            La création ou l&apos;annulation d&apos;une séance notifie automatiquement les
+            stagiaires du groupe et le formateur concerné.
+          </p>
+          <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-left text-xs font-extrabold uppercase tracking-wide text-slate-400">
+                  <th className="px-5 pt-5 pb-3">Date</th>
+                  <th className="px-5 pt-5 pb-3">Module</th>
+                  <th className="px-5 pt-5 pb-3">Groupe</th>
+                  <th className="px-5 pt-5 pb-3">Formateur</th>
+                  <th className="px-5 pt-5 pb-3"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {seances.map((s) => (
+                  <tr key={s.id} className="border-t border-slate-100">
+                    <td className="px-5 py-3.5 text-slate-500">
+                      {new Date(s.debut).toLocaleDateString("fr-FR", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                      })}{" "}
+                      · {s.creneau === "matin" ? "Matin" : "Après-midi"}
+                    </td>
+                    <td className="px-5 py-3.5 font-semibold text-slate-800">{s.module_nom}</td>
+                    <td className="px-5 py-3.5 text-slate-500">{s.groupe_nom}</td>
+                    <td className="px-5 py-3.5 text-slate-500">
+                      {s.formateur_nom ? `${s.formateur_prenom} ${s.formateur_nom}` : "—"}
+                    </td>
+                    <td className="px-5 py-3.5 text-right">
+                      <form action={supprimerSession}>
+                        <input type="hidden" name="session_id" value={s.id} />
+                        <button className="text-xs font-bold rounded-lg border border-slate-200 text-afpi-red-dark px-3 py-1.5 hover:bg-afpi-red-tint transition-colors">
+                          Annuler
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                ))}
+                {seances.length === 0 && (
+                  <tr>
+                    <td colSpan={5} className="px-5 py-6 text-center text-slate-400">
+                      Aucune séance planifiée.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section>
