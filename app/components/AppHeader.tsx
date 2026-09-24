@@ -76,9 +76,13 @@ export default function AppHeader({ prenom, nom, role }: AppHeaderProps) {
             </span>
             <span className="text-xs text-slate-400">{roleLabel[role]}</span>
           </div>
-          <div className="h-9 w-9 rounded-full bg-afpi-navy-tint text-afpi-navy flex items-center justify-center text-sm font-bold shrink-0">
+          <Link
+            href="/parametres"
+            title="Paramètres du compte"
+            className="h-9 w-9 rounded-full bg-afpi-navy-tint text-afpi-navy flex items-center justify-center text-sm font-bold shrink-0 hover:opacity-80 transition-opacity"
+          >
             {initials(prenom, nom)}
-          </div>
+          </Link>
           <NotificationBell />
           <button
             onClick={logout}
