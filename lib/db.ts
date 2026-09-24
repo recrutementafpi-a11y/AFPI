@@ -14,6 +14,7 @@ declare global {
 const db = global.__afpiDb ?? new Database(dbPath);
 if (process.env.NODE_ENV !== "production") global.__afpiDb = db;
 
+db.pragma("busy_timeout = 5000");
 db.pragma("journal_mode = WAL");
 db.pragma("foreign_keys = ON");
 
@@ -39,6 +40,8 @@ db.exec(`
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nom TEXT NOT NULL
   );
+
+  CREATE UNIQUE INDEX IF NOT EXISTS idx_modules_nom ON modules(nom);
 
   CREATE TABLE IF NOT EXISTS formateur_modules (
     formateur_id INTEGER NOT NULL REFERENCES users(id),
@@ -92,5 +95,14 @@ db.exec(`
 
   CREATE INDEX IF NOT EXISTS idx_notifications_user ON notifications(user_id, read_at);
 `);
+
+try {
+  db.exec("ALTER TABLE sessions_formation ADD COLUMN external_uid TEXT");
+} catch {
+  // Colonne déjà ajoutée par un précédent démarrage.
+}
+db.exec(
+  "CREATE UNIQUE INDEX IF NOT EXISTS idx_sessions_external_uid ON sessions_formation(external_uid) WHERE external_uid IS NOT NULL"
+);
 
 export default db;

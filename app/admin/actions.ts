@@ -2,10 +2,12 @@
 
 import bcrypt from "bcryptjs";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import db from "@/lib/db";
 import { getSession } from "@/lib/auth";
 import { genererCodeInscription } from "@/lib/codes";
 import { notifier, destinatairesGroupe } from "@/lib/notifications";
+import { importerEvenementsICal, type ImportResult } from "@/lib/planningImport";
 
 async function requireAdmin() {
   const session = await getSession();
@@ -170,4 +172,48 @@ export async function supprimerSession(formData: FormData) {
 
   revalidatePath("/admin");
   revalidatePath("/planning");
+}
+
+export async function importerPlanningICal(formData: FormData) {
+  await requireAdmin();
+
+  const groupeId = Number(formData.get("groupe_id"));
+  const formateurId = Number(formData.get("formateur_id")) || null;
+  const url = String(formData.get("ics_url") ?? "").trim();
+  const icsText = String(formData.get("ics_text") ?? "").trim();
+
+  if (!groupeId || (!url && !icsText)) {
+    redirect(
+      `/admin?import=error&message=${encodeURIComponent(
+        "Choisissez un groupe et renseignez soit une URL, soit un contenu iCal."
+      )}`
+    );
+  }
+
+  let result: ImportResult | null = null;
+  let errorMessage: string | null = null;
+  try {
+    const texte = icsText || (await (await fetch(url)).text());
+    result = await importerEvenementsICal(texte, groupeId, formateurId);
+  } catch (err) {
+    errorMessage = err instanceof Error ? err.message : "Échec de l'import du planning.";
+  }
+
+  if (errorMessage || !result) {
+    redirect(`/admin?import=error&message=${encodeURIComponent(errorMessage ?? "Import invalide.")}`);
+  }
+
+  if (result.createdSessionIds.length > 0) {
+    notifier(
+      destinatairesGroupe(groupeId, formateurId),
+      "seance_creee",
+      `${result.createdSessionIds.length} nouvelle(s) séance(s) importée(s) dans votre planning.`
+    );
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/planning");
+  redirect(
+    `/admin?import=ok&created=${result.created}&updated=${result.updated}&ignored=${result.ignored}`
+  );
 }

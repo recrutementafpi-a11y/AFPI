@@ -11,6 +11,7 @@ import {
   assignModule,
   createSession,
   supprimerSession,
+  importerPlanningICal,
 } from "./actions";
 
 interface Groupe {
@@ -46,7 +47,12 @@ const primaryBtnClass =
   "text-sm font-bold rounded-lg bg-afpi-red hover:bg-afpi-red-dark text-white px-4 py-2.5 transition-colors";
 const cardClass = "bg-white border border-slate-200 rounded-2xl p-6";
 
-export default async function AdminPage() {
+export default async function AdminPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ import?: string; created?: string; updated?: string; ignored?: string; message?: string }>;
+}) {
+  const sp = await searchParams;
   const session = await getSession();
   if (!session.userId || session.role !== "admin") redirect("/login");
 
@@ -101,6 +107,18 @@ export default async function AdminPage() {
             démonstration).
           </p>
         </div>
+
+        {sp.import === "ok" && (
+          <div className="bg-afpi-green-tint text-afpi-green text-sm font-bold rounded-xl px-5 py-4">
+            Import terminé : {sp.created ?? 0} séance(s) créée(s), {sp.updated ?? 0} mise(s) à jour
+            {Number(sp.ignored) > 0 ? `, ${sp.ignored} ignorée(s) (événement incomplet)` : ""}.
+          </div>
+        )}
+        {sp.import === "error" && (
+          <div className="bg-afpi-red-tint text-afpi-red-dark text-sm font-bold rounded-xl px-5 py-4">
+            Échec de l&apos;import : {sp.message ?? "erreur inconnue."}
+          </div>
+        )}
 
         <section className="flex gap-4">
           <div className="flex-1 bg-white border border-slate-200 rounded-xl px-5 py-4">
@@ -249,6 +267,51 @@ export default async function AdminPage() {
               </select>
             </label>
             <button className={`${primaryBtnClass} sm:col-span-2 w-fit`}>Créer la séance</button>
+          </form>
+        </section>
+
+        <section className={cardClass}>
+          <h2 className="font-extrabold text-slate-900 mb-1">Importer un planning (NetYparéo / Sowesign)</h2>
+          <p className="text-slate-500 text-sm mb-4">
+            Collez l&apos;URL du flux iCal (.ics) fourni par NetYparéo ou Sowesign, ou collez
+            directement son contenu. Chaque événement devient une séance ; un ré-import met à jour
+            les séances déjà importées au lieu de les dupliquer.
+          </p>
+          <form action={importerPlanningICal} className="grid sm:grid-cols-2 gap-2.5">
+            <select name="groupe_id" required className={inputClass}>
+              <option value="">Groupe...</option>
+              {groupes.map((g) => (
+                <option key={g.id} value={g.id}>
+                  {g.nom}
+                </option>
+              ))}
+            </select>
+            <select name="formateur_id" className={inputClass}>
+              <option value="">Formateur par défaut (optionnel)...</option>
+              {formateurs.map((f) => (
+                <option key={f.id} value={f.id}>
+                  {f.prenom} {f.nom}
+                </option>
+              ))}
+            </select>
+            <input
+              name="ics_url"
+              type="url"
+              placeholder="URL du flux iCal (https://.../planning.ics)"
+              className={`${inputClass} sm:col-span-2`}
+            />
+            <div className="sm:col-span-2 flex items-center gap-3 text-xs text-slate-400">
+              <span className="flex-1 h-px bg-slate-200" />
+              ou collez le contenu .ics
+              <span className="flex-1 h-px bg-slate-200" />
+            </div>
+            <textarea
+              name="ics_text"
+              rows={5}
+              placeholder="BEGIN:VCALENDAR..."
+              className={`${inputClass} sm:col-span-2 font-mono text-xs`}
+            />
+            <button className={`${primaryBtnClass} sm:col-span-2 w-fit`}>Importer le planning</button>
           </form>
         </section>
 
