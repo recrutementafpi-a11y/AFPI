@@ -41,9 +41,9 @@ export default function LoginPage() {
         <div className="text-center mb-8">
           <Image
             src="/logo-afpi.png"
-            alt="AFPI Région Dunkerquoise"
-            width={96}
-            height={82}
+            alt="AFPI Région Dunkerquoise · UIMM Pôle Formation Flandre Maritime"
+            width={278}
+            height={122}
             className="mx-auto mb-3"
             priority
           />

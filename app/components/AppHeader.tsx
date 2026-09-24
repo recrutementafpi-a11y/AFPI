@@ -29,15 +29,17 @@ export default function AppHeader({ prenom, nom, role }: AppHeaderProps) {
     <header className="bg-afpi-navy text-white">
       <div className="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-6">
-          <Link href="/planning" className="flex items-center gap-2">
+          <Link href="/planning" className="flex items-center gap-3">
             <Image
               src="/logo-afpi.png"
-              alt="AFPI Région Dunkerquoise"
-              width={36}
-              height={36}
-              className="h-9 w-9 rounded bg-white p-0.5"
+              alt="AFPI Région Dunkerquoise · UIMM Pôle Formation Flandre Maritime"
+              width={111}
+              height={49}
+              className="h-10 w-auto rounded bg-white px-1 py-0.5"
             />
-            <span className="font-bold text-lg tracking-tight">Espace stagiaires</span>
+            <span className="font-bold text-lg tracking-tight hidden sm:inline">
+              Espace stagiaires
+            </span>
           </Link>
           <nav className="hidden sm:flex gap-4 text-sm">
             <Link href="/planning" className="hover:underline">
