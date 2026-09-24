@@ -20,7 +20,8 @@ db.pragma("foreign_keys = ON");
 db.exec(`
   CREATE TABLE IF NOT EXISTS groupes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nom TEXT NOT NULL
+    nom TEXT NOT NULL,
+    code_inscription TEXT UNIQUE
   );
 
   CREATE TABLE IF NOT EXISTS users (

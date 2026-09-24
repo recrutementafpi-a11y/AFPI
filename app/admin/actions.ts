@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { revalidatePath } from "next/cache";
 import db from "@/lib/db";
 import { getSession } from "@/lib/auth";
+import { genererCodeInscription } from "@/lib/codes";
 
 async function requireAdmin() {
   const session = await getSession();
@@ -16,7 +17,30 @@ export async function createGroupe(formData: FormData) {
   await requireAdmin();
   const nom = String(formData.get("nom") ?? "").trim();
   if (!nom) return;
-  db.prepare("INSERT INTO groupes (nom) VALUES (?)").run(nom);
+  let code = genererCodeInscription(nom);
+  for (let tentative = 0; tentative < 5; tentative++) {
+    const existe = db.prepare("SELECT 1 FROM groupes WHERE code_inscription = ?").get(code);
+    if (!existe) break;
+    code = genererCodeInscription(nom);
+  }
+  db.prepare("INSERT INTO groupes (nom, code_inscription) VALUES (?, ?)").run(nom, code);
+  revalidatePath("/admin");
+}
+
+export async function regenererCode(formData: FormData) {
+  await requireAdmin();
+  const groupeId = Number(formData.get("groupe_id"));
+  const groupe = db.prepare("SELECT nom FROM groupes WHERE id = ?").get(groupeId) as
+    | { nom: string }
+    | undefined;
+  if (!groupe) return;
+  let code = genererCodeInscription(groupe.nom);
+  for (let tentative = 0; tentative < 5; tentative++) {
+    const existe = db.prepare("SELECT 1 FROM groupes WHERE code_inscription = ?").get(code);
+    if (!existe) break;
+    code = genererCodeInscription(groupe.nom);
+  }
+  db.prepare("UPDATE groupes SET code_inscription = ? WHERE id = ?").run(code, groupeId);
   revalidatePath("/admin");
 }
 

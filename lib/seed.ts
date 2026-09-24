@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import db from "./db";
+import { genererCodeInscription } from "./codes";
 
 function hash(pw: string) {
   return bcrypt.hashSync(pw, 10);
@@ -30,8 +31,10 @@ export function seed() {
     return;
   }
 
-  const insertGroupe = db.prepare("INSERT INTO groupes (nom) VALUES (?)");
-  const groupeId = insertGroupe.run("CAP Réalisations Industrielles - Promo 2026").lastInsertRowid as number;
+  const nomGroupe = "CAP Réalisations Industrielles - Promo 2026";
+  const codeInscription = genererCodeInscription(nomGroupe);
+  const insertGroupe = db.prepare("INSERT INTO groupes (nom, code_inscription) VALUES (?, ?)");
+  const groupeId = insertGroupe.run(nomGroupe, codeInscription).lastInsertRowid as number;
 
   const insertUser = db.prepare(`
     INSERT INTO users (email, password_hash, role, nom, prenom, groupe_id)
@@ -139,6 +142,7 @@ export function seed() {
   }
 
   console.log("Seed terminé.");
+  console.log(`Code d'inscription stagiaire pour "${nomGroupe}" : ${codeInscription}`);
   console.log("Comptes de démo :");
   console.log("  admin@afpi-formation.com / Admin123!");
   console.log("  formateur@afpi-formation.com / Formateur123! (Soudure, Sécurité, Chaudronnerie)");

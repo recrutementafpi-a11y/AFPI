@@ -4,6 +4,7 @@ import db from "@/lib/db";
 import AppHeader from "@/app/components/AppHeader";
 import {
   createGroupe,
+  regenererCode,
   createStagiaire,
   createFormateur,
   createModule,
@@ -14,6 +15,7 @@ import {
 interface Groupe {
   id: number;
   nom: string;
+  code_inscription: string | null;
 }
 
 interface ModuleRow {
@@ -41,7 +43,9 @@ export default async function AdminPage() {
   const session = await getSession();
   if (!session.userId || session.role !== "admin") redirect("/login");
 
-  const groupes = db.prepare("SELECT id, nom FROM groupes ORDER BY nom").all() as Groupe[];
+  const groupes = db
+    .prepare("SELECT id, nom, code_inscription FROM groupes ORDER BY nom")
+    .all() as Groupe[];
   const modules = db.prepare("SELECT id, nom FROM modules ORDER BY nom").all() as ModuleRow[];
   const formateurs = db
     .prepare("SELECT id, prenom, nom FROM users WHERE role = 'formateur' ORDER BY nom")
@@ -207,6 +211,43 @@ export default async function AdminPage() {
               Créer la séance
             </button>
           </form>
+        </section>
+
+        <section>
+          <h2 className="font-semibold text-slate-900 mb-1">Codes d&apos;inscription stagiaires</h2>
+          <p className="text-slate-600 text-sm mb-3">
+            À communiquer aux stagiaires d&apos;un groupe pour qu&apos;ils créent leur compte
+            eux-mêmes sur la page <span className="font-mono">/inscription</span>.
+          </p>
+          <div className="bg-white border border-slate-200 rounded-lg overflow-hidden">
+            <table className="w-full text-sm">
+              <thead className="bg-slate-100 text-slate-600 text-left">
+                <tr>
+                  <th className="px-4 py-2">Groupe</th>
+                  <th className="px-4 py-2">Code</th>
+                  <th className="px-4 py-2"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {groupes.map((g) => (
+                  <tr key={g.id} className="border-t border-slate-100">
+                    <td className="px-4 py-2">{g.nom}</td>
+                    <td className="px-4 py-2 font-mono font-semibold text-afpi-navy">
+                      {g.code_inscription ?? "—"}
+                    </td>
+                    <td className="px-4 py-2 text-right">
+                      <form action={regenererCode}>
+                        <input type="hidden" name="groupe_id" value={g.id} />
+                        <button className="text-xs rounded border border-slate-300 px-2 py-1 hover:bg-slate-100">
+                          Régénérer
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section>
