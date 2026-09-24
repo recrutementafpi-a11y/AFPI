@@ -4,6 +4,7 @@ import { getSession } from "@/lib/auth";
 import db from "@/lib/db";
 import AppHeader from "@/app/components/AppHeader";
 import SignaturePad from "@/app/components/SignaturePad";
+import { definirPresence } from "../actions";
 
 interface FormationSession {
   id: number;
@@ -26,6 +27,7 @@ interface EmargementRow {
   nom: string;
   signature: string | null;
   signed_at: string | null;
+  statut: "present" | "absent" | null;
 }
 
 function formatDate(iso: string) {
@@ -86,6 +88,10 @@ export default async function EmargementDetailPage({
       .prepare("SELECT signature, signed_at FROM emargements WHERE session_id = ? AND stagiaire_id = ?")
       .get(sessionId, session.userId) as { signature: string; signed_at: string } | undefined;
 
+    const maPresence = db
+      .prepare("SELECT statut, valide_at FROM presences WHERE session_id = ? AND stagiaire_id = ?")
+      .get(sessionId, session.userId) as { statut: "present" | "absent"; valide_at: string } | undefined;
+
     return (
       <>
         <AppHeader prenom={session.prenom!} nom={session.nom!} role={session.role} />
@@ -103,6 +109,30 @@ export default async function EmargementDetailPage({
               {formatDate(formationSession.debut)} · {CRENEAU_LABEL[formationSession.creneau]}
               {formationSession.lieu ? ` · ${formationSession.lieu}` : ""}
             </p>
+
+            {maPresence && (
+              <div
+                className={`mt-4 flex items-center gap-2.5 rounded-xl px-4 py-3 text-sm font-bold ${
+                  maPresence.statut === "present"
+                    ? "bg-afpi-green-tint text-afpi-green"
+                    : "bg-afpi-red-tint text-afpi-red-dark"
+                }`}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  {maPresence.statut === "present" ? (
+                    <polyline points="20 6 9 17 4 12" />
+                  ) : (
+                    <>
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" />
+                    </>
+                  )}
+                </svg>
+                {maPresence.statut === "present"
+                  ? "Présence validée par le formateur"
+                  : "Absence enregistrée par le formateur"}
+              </div>
+            )}
 
             <div className="border-t border-slate-100 mt-6 pt-6">
               {mySignature ? (
@@ -137,15 +167,18 @@ export default async function EmargementDetailPage({
   // Formateur / admin : vue de suivi
   const stagiaires = db
     .prepare(
-      `SELECT u.id as stagiaire_id, u.prenom, u.nom, e.signature, e.signed_at
+      `SELECT u.id as stagiaire_id, u.prenom, u.nom, e.signature, e.signed_at, p.statut
        FROM users u
        LEFT JOIN emargements e ON e.session_id = ? AND e.stagiaire_id = u.id
+       LEFT JOIN presences p ON p.session_id = ? AND p.stagiaire_id = u.id
        WHERE u.groupe_id = ? AND u.role = 'stagiaire'
        ORDER BY u.nom ASC`
     )
-    .all(sessionId, formationSession.groupe_id) as EmargementRow[];
+    .all(sessionId, sessionId, formationSession.groupe_id) as EmargementRow[];
 
   const signedCount = stagiaires.filter((s) => s.signature).length;
+  const presentCount = stagiaires.filter((s) => s.statut === "present").length;
+  const absentCount = stagiaires.filter((s) => s.statut === "absent").length;
 
   return (
     <>
@@ -179,48 +212,91 @@ export default async function EmargementDetailPage({
           </div>
           <div className="flex-1 bg-white border border-slate-200 rounded-xl px-4 py-3">
             <p className="text-xs font-extrabold uppercase tracking-wide text-slate-400 flex items-center gap-1.5">
-              <span className="h-2 w-2 rounded-full bg-afpi-green inline-block" /> Signés
+              <span className="h-2 w-2 rounded-full bg-afpi-sky inline-block" /> Signés
             </p>
-            <p className="text-2xl font-extrabold text-afpi-green mt-0.5">{signedCount}</p>
+            <p className="text-2xl font-extrabold text-[#0b7bae] mt-0.5">{signedCount}</p>
           </div>
           <div className="flex-1 bg-white border border-slate-200 rounded-xl px-4 py-3">
             <p className="text-xs font-extrabold uppercase tracking-wide text-slate-400 flex items-center gap-1.5">
-              <span className="h-2 w-2 rounded-full bg-afpi-sky inline-block" /> En attente
+              <span className="h-2 w-2 rounded-full bg-afpi-green inline-block" /> Présences validées
             </p>
-            <p className="text-2xl font-extrabold text-[#0b7bae] mt-0.5">{stagiaires.length - signedCount}</p>
+            <p className="text-2xl font-extrabold text-afpi-green mt-0.5">{presentCount}</p>
+          </div>
+          <div className="flex-1 bg-white border border-slate-200 rounded-xl px-4 py-3">
+            <p className="text-xs font-extrabold uppercase tracking-wide text-slate-400 flex items-center gap-1.5">
+              <span className="h-2 w-2 rounded-full bg-afpi-red inline-block" /> Absences validées
+            </p>
+            <p className="text-2xl font-extrabold text-afpi-red-dark mt-0.5">{absentCount}</p>
           </div>
         </div>
 
+        <p className="text-xs text-slate-400 mb-3">
+          Validez la présence ou l&apos;absence de chaque stagiaire, avant ou après sa signature — c&apos;est
+          cette validation qui fait foi.
+        </p>
+
         <ul className="space-y-2.5">
-          {stagiaires.map((s) => (
-            <li
-              key={s.stagiaire_id}
-              className="bg-white border border-slate-200 rounded-xl p-4 flex items-center justify-between gap-4"
-            >
-              <div>
-                <p className="font-bold text-slate-900">
-                  {s.prenom} {s.nom}
-                </p>
-                {s.signed_at && (
-                  <p className="text-xs text-slate-400 mt-0.5">
-                    Signé le {new Date(s.signed_at).toLocaleString("fr-FR")}
+          {stagiaires.map((s) => {
+            const isPresent = s.statut === "present";
+            const isAbsent = s.statut === "absent";
+            return (
+              <li
+                key={s.stagiaire_id}
+                className="bg-white border border-slate-200 rounded-xl p-4 flex items-center justify-between gap-4 flex-wrap"
+              >
+                <div className="min-w-0">
+                  <p className="font-bold text-slate-900">
+                    {s.prenom} {s.nom}
                   </p>
-                )}
-              </div>
-              {s.signature ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={s.signature}
-                  alt={`Signature de ${s.prenom} ${s.nom}`}
-                  className="h-11 border border-slate-200 rounded-lg bg-white"
-                />
-              ) : (
-                <span className="text-xs font-bold text-[#0b7bae] bg-afpi-sky-tint px-3 py-1.5 rounded-full">
-                  En attente
-                </span>
-              )}
-            </li>
-          ))}
+                  <p className="text-xs text-slate-400 mt-0.5">
+                    {s.signed_at
+                      ? `Signé le ${new Date(s.signed_at).toLocaleString("fr-FR")}`
+                      : "Non signé"}
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-3 ml-auto">
+                  {s.signature && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={s.signature}
+                      alt={`Signature de ${s.prenom} ${s.nom}`}
+                      className="h-11 border border-slate-200 rounded-lg bg-white"
+                    />
+                  )}
+
+                  <form action={definirPresence} className="flex gap-1.5 shrink-0">
+                    <input type="hidden" name="session_id" value={sessionId} />
+                    <input type="hidden" name="stagiaire_id" value={s.stagiaire_id} />
+                    <button
+                      type="submit"
+                      name="statut"
+                      value={isPresent ? "reset" : "present"}
+                      className={`text-xs font-bold px-3 py-1.5 rounded-full border transition-colors ${
+                        isPresent
+                          ? "bg-afpi-green text-white border-afpi-green"
+                          : "border-slate-200 text-slate-500 hover:bg-slate-50"
+                      }`}
+                    >
+                      Présent
+                    </button>
+                    <button
+                      type="submit"
+                      name="statut"
+                      value={isAbsent ? "reset" : "absent"}
+                      className={`text-xs font-bold px-3 py-1.5 rounded-full border transition-colors ${
+                        isAbsent
+                          ? "bg-afpi-red text-white border-afpi-red"
+                          : "border-slate-200 text-slate-500 hover:bg-slate-50"
+                      }`}
+                    >
+                      Absent
+                    </button>
+                  </form>
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </main>
     </>

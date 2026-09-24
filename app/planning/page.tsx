@@ -14,6 +14,8 @@ interface SessionRow {
   groupe_nom: string;
   formateur_prenom: string | null;
   formateur_nom: string | null;
+  ma_signature: number | null;
+  mon_statut: "present" | "absent" | null;
 }
 
 const CRENEAU_LABEL: Record<SessionRow["creneau"], string> = {
@@ -33,7 +35,9 @@ export default async function PlanningPage() {
     rows = db
       .prepare(
         `SELECT s.id, m.nom as module_nom, s.creneau, s.lieu, s.debut, s.fin, g.nom as groupe_nom,
-                u.prenom as formateur_prenom, u.nom as formateur_nom
+                u.prenom as formateur_prenom, u.nom as formateur_nom,
+                (SELECT COUNT(*) FROM emargements e WHERE e.session_id = s.id AND e.stagiaire_id = ?) as ma_signature,
+                (SELECT p.statut FROM presences p WHERE p.session_id = s.id AND p.stagiaire_id = ?) as mon_statut
          FROM sessions_formation s
          JOIN groupes g ON g.id = s.groupe_id
          JOIN modules m ON m.id = s.module_id
@@ -41,12 +45,13 @@ export default async function PlanningPage() {
          WHERE s.groupe_id = ?
          ORDER BY s.debut ASC`
       )
-      .all(user?.groupe_id ?? -1) as SessionRow[];
+      .all(session.userId, session.userId, user?.groupe_id ?? -1) as SessionRow[];
   } else {
     rows = db
       .prepare(
         `SELECT s.id, m.nom as module_nom, s.creneau, s.lieu, s.debut, s.fin, g.nom as groupe_nom,
-                u.prenom as formateur_prenom, u.nom as formateur_nom
+                u.prenom as formateur_prenom, u.nom as formateur_nom,
+                NULL as ma_signature, NULL as mon_statut
          FROM sessions_formation s
          JOIN groupes g ON g.id = s.groupe_id
          JOIN modules m ON m.id = s.module_id
@@ -100,17 +105,54 @@ export default async function PlanningPage() {
                 <div className="flex-1 flex flex-col gap-2.5">
                   {sessions.map((s) => {
                     const isPast = new Date(s.fin).getTime() < now;
+                    const isFuture = new Date(s.debut).getTime() > now;
                     const isCurrentToday = isToday && !isPast;
-                    const accent = isPast ? "bg-slate-300" : isCurrentToday ? "bg-afpi-red" : "bg-slate-200";
+
+                    let label: string;
+                    let badgeClass: string;
+                    let accent: string;
+
+                    if (session.role !== "stagiaire") {
+                      label = isPast ? "Terminée" : isCurrentToday ? "En cours" : "À venir";
+                      badgeClass = isCurrentToday
+                        ? "bg-afpi-red-tint text-afpi-red-dark"
+                        : "bg-slate-100 text-slate-500";
+                      accent = isPast ? "bg-slate-300" : isCurrentToday ? "bg-afpi-red" : "bg-slate-200";
+                    } else if (isFuture) {
+                      label = "À venir";
+                      badgeClass = "bg-slate-100 text-slate-500";
+                      accent = "bg-slate-200";
+                    } else if (s.mon_statut === "absent") {
+                      label = "Absence enregistrée";
+                      badgeClass = "bg-afpi-red-tint text-afpi-red-dark";
+                      accent = "bg-afpi-red";
+                    } else if (s.mon_statut === "present") {
+                      label = "Présence validée";
+                      badgeClass = "bg-afpi-green-tint text-afpi-green";
+                      accent = "bg-afpi-green";
+                    } else if (s.ma_signature) {
+                      label = "Signée · en attente de validation";
+                      badgeClass = "bg-afpi-sky-tint text-[#0b7bae]";
+                      accent = "bg-afpi-sky";
+                    } else if (isCurrentToday) {
+                      label = "En cours · à émarger";
+                      badgeClass = "bg-afpi-red-tint text-afpi-red-dark";
+                      accent = "bg-afpi-red";
+                    } else {
+                      label = "Non signée";
+                      badgeClass = "bg-afpi-red-tint text-afpi-red-dark";
+                      accent = "bg-afpi-red";
+                    }
+
                     return (
                       <Link
                         key={s.id}
                         href={`/emargement/${s.id}`}
                         className={`flex items-center gap-4 bg-white rounded-xl p-4 transition-shadow ${
-                          isCurrentToday
+                          isCurrentToday && session.role === "stagiaire" && !s.ma_signature && !s.mon_statut
                             ? "border-[1.5px] border-afpi-red shadow-[0_2px_10px_rgba(226,0,26,0.08)]"
                             : "border border-slate-200"
-                        } ${isPast ? "opacity-70" : ""}`}
+                        } ${isPast && session.role !== "stagiaire" ? "opacity-70" : ""}`}
                       >
                         <span className={`w-1 self-stretch rounded-full ${accent}`} />
                         <span className="w-28 shrink-0 text-sm font-bold text-slate-700">
@@ -125,15 +167,9 @@ export default async function PlanningPage() {
                           </span>
                         </span>
                         <span
-                          className={`shrink-0 text-xs font-bold px-3 py-1.5 rounded-full whitespace-nowrap ${
-                            isPast
-                              ? "bg-slate-100 text-slate-500"
-                              : isCurrentToday
-                                ? "bg-afpi-red-tint text-afpi-red-dark"
-                                : "bg-slate-100 text-slate-500"
-                          }`}
+                          className={`shrink-0 text-xs font-bold px-3 py-1.5 rounded-full whitespace-nowrap ${badgeClass}`}
                         >
-                          {isPast ? "Terminée · émargée" : isCurrentToday ? "En cours · à émarger" : "À venir"}
+                          {label}
                         </span>
                       </Link>
                     );
