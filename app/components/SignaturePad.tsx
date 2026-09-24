@@ -85,7 +85,7 @@ export default function SignaturePad({ sessionId }: { sessionId: number }) {
 
   return (
     <div>
-      <p className="text-sm text-slate-600 mb-2">Signez ci-dessous avec le doigt ou la souris :</p>
+      <p className="text-sm text-slate-500 mb-3">Signez ci-dessous avec le doigt ou la souris :</p>
       <canvas
         ref={canvasRef}
         width={480}
@@ -94,14 +94,14 @@ export default function SignaturePad({ sessionId }: { sessionId: number }) {
         onPointerMove={move}
         onPointerUp={end}
         onPointerLeave={end}
-        className="w-full max-w-md touch-none rounded border-2 border-dashed border-slate-300 bg-white"
+        className="w-full touch-none rounded-xl border-2 border-dashed border-slate-200 bg-slate-50/50"
       />
-      {error && <p className="text-sm text-red-600 mt-2">{error}</p>}
-      <div className="flex gap-2 mt-3">
+      {error && <p className="text-sm text-afpi-red-dark mt-2">{error}</p>}
+      <div className="flex gap-2.5 justify-end mt-4">
         <button
           onClick={clear}
           type="button"
-          className="text-sm rounded border border-slate-300 px-3 py-1.5 hover:bg-slate-100"
+          className="text-sm font-bold rounded-lg border border-slate-200 text-slate-600 px-5 py-2.5 hover:bg-slate-50 transition-colors"
         >
           Effacer
         </button>
@@ -109,9 +109,9 @@ export default function SignaturePad({ sessionId }: { sessionId: number }) {
           onClick={submit}
           type="button"
           disabled={submitting}
-          className="text-sm rounded bg-afpi-navy hover:bg-afpi-navy-dark disabled:opacity-60 text-white px-4 py-1.5"
+          className="text-sm font-bold rounded-lg bg-afpi-red hover:bg-afpi-red-dark disabled:opacity-60 text-white px-6 py-2.5 transition-colors"
         >
-          {submitting ? "Enregistrement..." : "Valider ma signature"}
+          {submitting ? "Enregistrement..." : "Valider ma présence"}
         </button>
       </div>
     </div>

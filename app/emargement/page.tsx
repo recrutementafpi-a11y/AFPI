@@ -67,43 +67,43 @@ export default async function EmargementIndexPage() {
   return (
     <>
       <AppHeader prenom={session.prenom!} nom={session.nom!} role={session.role} />
-      <main className="flex-1 mx-auto w-full max-w-3xl px-4 py-8">
-        <h1 className="text-xl font-bold text-slate-900 mb-1">Émargement</h1>
-        <p className="text-slate-600 text-sm mb-6">
+      <main className="flex-1 mx-auto w-full max-w-3xl px-4 py-10">
+        <h1 className="text-3xl font-extrabold text-slate-900 mb-1">Émargement</h1>
+        <p className="text-slate-500 text-sm mb-8">
           {session.role === "stagiaire"
             ? "Signez votre présence pour chaque séance."
             : "Suivi des signatures par séance."}
         </p>
 
         {rows.length === 0 && (
-          <p className="text-slate-500 bg-white border border-slate-200 rounded p-6 text-center">
+          <p className="text-slate-500 bg-white border border-slate-200 rounded-2xl p-8 text-center">
             Aucune séance à émarger pour le moment.
           </p>
         )}
 
-        <ul className="space-y-2">
+        <ul className="space-y-2.5">
           {rows.map((s) => (
             <li
               key={s.id}
-              className="bg-white border border-slate-200 rounded-lg p-4 flex items-center justify-between gap-4"
+              className="bg-white border border-slate-200 rounded-xl p-4 flex items-center justify-between gap-4"
             >
-              <div>
-                <p className="font-medium text-slate-900">{s.module_nom}</p>
-                <p className="text-sm text-slate-600">
+              <div className="min-w-0">
+                <p className="font-bold text-slate-900 truncate">{s.module_nom}</p>
+                <p className="text-sm text-slate-500">
                   {formatDate(s.debut)} · {CRENEAU_LABEL[s.creneau]}
                 </p>
                 {session.role !== "stagiaire" && (
-                  <p className="text-xs text-slate-500 mt-1">
+                  <p className="text-xs text-slate-400 mt-1">
                     Groupe {s.groupe_nom} · {s.signed}/{s.total_stagiaires} signatures
                   </p>
                 )}
               </div>
               <a
                 href={`/emargement/${s.id}`}
-                className={`shrink-0 text-sm rounded px-3 py-1.5 transition-colors ${
+                className={`shrink-0 text-sm font-bold rounded-lg px-4 py-2 transition-colors ${
                   session.role === "stagiaire" && s.my_signature
-                    ? "bg-green-100 text-green-800"
-                    : "bg-afpi-navy hover:bg-afpi-navy-dark text-white"
+                    ? "bg-afpi-green-tint text-afpi-green"
+                    : "bg-afpi-red hover:bg-afpi-red-dark text-white"
                 }`}
               >
                 {session.role === "stagiaire"
