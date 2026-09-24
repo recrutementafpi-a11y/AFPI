@@ -29,6 +29,23 @@ Puis ouvrir [http://localhost:3000](http://localhost:3000).
 | Stagiaire  | karim.saidi@example.com             | Stagiaire123!   |
 | Stagiaire  | chloe.roux@example.com              | Stagiaire123!   |
 
+## Déployer la démo en ligne (sans rien installer sur son PC)
+
+Le projet est prêt à être déployé sur [Render](https://render.com) (offre gratuite) :
+
+- **Build Command** : `npm install && npm run build && npm run seed`
+- **Start Command** : `npm start`
+- Variable d'environnement à ajouter : `SESSION_SECRET` (une chaîne aléatoire d'au
+  moins 32 caractères — Render propose un bouton "Generate" pour ça).
+
+Render fournit alors une URL publique (ex: `https://xxxx.onrender.com`) à ouvrir dans
+n'importe quel navigateur, sans rien installer localement. Sur l'offre gratuite, le
+service se met en veille après 15 min d'inactivité : la première ouverture après une
+pause peut prendre 30 à 60 secondes.
+
+⚠️ La base SQLite est réinitialisée à chaque redéploiement (elle n'est pas persistée) :
+c'est voulu pour un prototype de démonstration, pas adapté à un usage réel.
+
 ## Fonctionnalités du prototype
 
 - **Connexion** par email / mot de passe (sessions chiffrées via cookie).
