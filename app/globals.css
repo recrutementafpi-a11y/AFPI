@@ -3,10 +3,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  /* Palette AFPI : bleu marine (logo) + vert (Région Dunkerquoise) */
-  --afpi-navy: #1a3a7a;
-  --afpi-navy-dark: #122a5c;
-  --afpi-green: #1c7a4c;
+  /* Palette AFPI : bleu du logo + vert "Région Dunkerquoise" */
+  --afpi-navy: #1e4e98;
+  --afpi-navy-dark: #163a73;
+  --afpi-green: #288d68;
 }
 
 @theme inline {

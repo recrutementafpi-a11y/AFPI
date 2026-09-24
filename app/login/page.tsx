@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -38,7 +39,14 @@ export default function LoginPage() {
     <div className="flex-1 flex items-center justify-center bg-slate-50 px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-afpi-navy">AFPI</h1>
+          <Image
+            src="/logo-afpi.png"
+            alt="AFPI Région Dunkerquoise"
+            width={96}
+            height={82}
+            className="mx-auto mb-3"
+            priority
+          />
           <p className="text-slate-600 mt-1">Espace stagiaires — Planning &amp; émargement</p>
         </div>
         <form

@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import LogoMark from "./LogoMark";
+import Image from "next/image";
 
 interface AppHeaderProps {
   prenom: string;
@@ -30,7 +30,13 @@ export default function AppHeader({ prenom, nom, role }: AppHeaderProps) {
       <div className="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-6">
           <Link href="/planning" className="flex items-center gap-2">
-            <LogoMark className="h-9 w-9" />
+            <Image
+              src="/logo-afpi.png"
+              alt="AFPI Région Dunkerquoise"
+              width={36}
+              height={36}
+              className="h-9 w-9 rounded bg-white p-0.5"
+            />
             <span className="font-bold text-lg tracking-tight">Espace stagiaires</span>
           </Link>
           <nav className="hidden sm:flex gap-4 text-sm">
