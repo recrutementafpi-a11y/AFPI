@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import db from "@/lib/db";
 import { getSession } from "@/lib/auth";
+import { notifier, idsAdmins } from "@/lib/notifications";
 
 export async function POST(req: NextRequest) {
   const session = await getSession();
@@ -17,8 +18,14 @@ export async function POST(req: NextRequest) {
   }
 
   const formationSession = db
-    .prepare("SELECT id, groupe_id FROM sessions_formation WHERE id = ?")
-    .get(sessionId) as { id: number; groupe_id: number } | undefined;
+    .prepare(
+      `SELECT s.id, s.groupe_id, s.formateur_id, m.nom as module_nom
+       FROM sessions_formation s JOIN modules m ON m.id = s.module_id
+       WHERE s.id = ?`
+    )
+    .get(sessionId) as
+    | { id: number; groupe_id: number; formateur_id: number | null; module_nom: string }
+    | undefined;
   if (!formationSession) {
     return NextResponse.json({ error: "Séance introuvable." }, { status: 404 });
   }
@@ -38,6 +45,14 @@ export async function POST(req: NextRequest) {
      VALUES (?, ?, ?, datetime('now'))
      ON CONFLICT(session_id, stagiaire_id) DO UPDATE SET signature = excluded.signature, signed_at = datetime('now')`
   ).run(sessionId, session.userId, signature);
+
+  const destinataires = [...idsAdmins(), ...(formationSession.formateur_id ? [formationSession.formateur_id] : [])];
+  notifier(
+    destinataires,
+    "signature",
+    `${session.prenom} ${session.nom} a signé sa présence pour ${formationSession.module_nom}.`,
+    sessionId
+  );
 
   return NextResponse.json({ ok: true });
 }

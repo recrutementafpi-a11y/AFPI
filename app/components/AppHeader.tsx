@@ -3,6 +3,7 @@
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import NotificationBell from "./NotificationBell";
 
 interface AppHeaderProps {
   prenom: string;
@@ -78,6 +79,7 @@ export default function AppHeader({ prenom, nom, role }: AppHeaderProps) {
           <div className="h-9 w-9 rounded-full bg-afpi-navy-tint text-afpi-navy flex items-center justify-center text-sm font-bold shrink-0">
             {initials(prenom, nom)}
           </div>
+          <NotificationBell />
           <button
             onClick={logout}
             aria-label="Se déconnecter"

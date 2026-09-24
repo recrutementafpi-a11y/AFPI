@@ -188,17 +188,44 @@ export default async function EmargementDetailPage({
 
         <div className="flex items-center justify-between mt-5 mb-1">
           <h1 className="text-2xl font-extrabold text-slate-900">{formationSession.module_nom}</h1>
-          <Link
-            href={`/admin/export?sessionId=${sessionId}`}
-            className="inline-flex items-center gap-2 text-sm font-bold rounded-lg border border-slate-200 text-slate-700 px-4 py-2 hover:bg-slate-50 transition-colors"
-          >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
-            </svg>
-            Exporter en CSV
-          </Link>
+          <div className="flex items-center gap-2.5">
+            <details className="relative">
+              <summary className="list-none inline-flex items-center gap-2 text-sm font-bold rounded-lg border border-slate-200 text-slate-700 px-4 py-2 hover:bg-slate-50 transition-colors cursor-pointer select-none">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="3" width="7" height="7" />
+                  <rect x="14" y="3" width="7" height="7" />
+                  <rect x="3" y="14" width="7" height="7" />
+                  <line x1="14" y1="14" x2="14" y2="21" />
+                  <line x1="21" y1="14" x2="21" y2="21" />
+                  <line x1="14" y1="17.5" x2="21" y2="17.5" />
+                </svg>
+                QR code de signature
+              </summary>
+              <div className="absolute right-0 mt-2 w-64 bg-white border border-slate-200 rounded-xl shadow-lg z-10 p-4 flex flex-col items-center gap-3">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/api/emargement/${sessionId}/qrcode`}
+                  alt="QR code vers l'écran de signature de cette séance"
+                  className="w-48 h-48"
+                />
+                <p className="text-xs text-slate-500 text-center leading-snug">
+                  À projeter en salle : chaque stagiaire connecté le scanne avec son téléphone pour
+                  accéder directement à sa signature.
+                </p>
+              </div>
+            </details>
+            <Link
+              href={`/admin/export?sessionId=${sessionId}`}
+              className="inline-flex items-center gap-2 text-sm font-bold rounded-lg border border-slate-200 text-slate-700 px-4 py-2 hover:bg-slate-50 transition-colors"
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Exporter en CSV
+            </Link>
+          </div>
         </div>
         <p className="text-slate-500 text-sm mb-3">
           {formatDate(formationSession.debut)} · {CRENEAU_LABEL[formationSession.creneau]}
