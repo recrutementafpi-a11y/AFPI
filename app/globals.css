@@ -1,12 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  /* Palette AFPI : bleu du logo + vert "Région Dunkerquoise" */
+  --background: #f5f7fa;
+  --foreground: #1b2430;
+  /* Palette AFPI : bleu et rouge du logo, vert "Région Dunkerquoise" */
   --afpi-navy: #1e4e98;
   --afpi-navy-dark: #163a73;
+  --afpi-navy-tint: #e5edf8;
+  --afpi-red: #e2001a;
+  --afpi-red-dark: #c40016;
+  --afpi-red-tint: #fce6e9;
   --afpi-green: #288d68;
+  --afpi-green-tint: #e3f2e9;
+  --afpi-sky: #29abe2;
+  --afpi-sky-tint: #e4f4fb;
 }
 
 @theme inline {
@@ -14,20 +21,18 @@
   --color-foreground: var(--foreground);
   --color-afpi-navy: var(--afpi-navy);
   --color-afpi-navy-dark: var(--afpi-navy-dark);
+  --color-afpi-navy-tint: var(--afpi-navy-tint);
+  --color-afpi-red: var(--afpi-red);
+  --color-afpi-red-dark: var(--afpi-red-dark);
+  --color-afpi-red-tint: var(--afpi-red-tint);
   --color-afpi-green: var(--afpi-green);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-afpi-green-tint: var(--afpi-green-tint);
+  --color-afpi-sky: var(--afpi-sky);
+  --color-afpi-sky-tint: var(--afpi-sky-tint);
+  --font-sans: var(--font-source-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

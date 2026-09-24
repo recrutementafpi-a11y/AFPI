@@ -67,6 +67,16 @@ db.exec(`
     signed_at TEXT NOT NULL DEFAULT (datetime('now')),
     UNIQUE(session_id, stagiaire_id)
   );
+
+  CREATE TABLE IF NOT EXISTS presences (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    session_id INTEGER NOT NULL REFERENCES sessions_formation(id),
+    stagiaire_id INTEGER NOT NULL REFERENCES users(id),
+    statut TEXT NOT NULL CHECK (statut IN ('present', 'absent')),
+    valide_par INTEGER REFERENCES users(id),
+    valide_at TEXT NOT NULL DEFAULT (datetime('now')),
+    UNIQUE(session_id, stagiaire_id)
+  );
 `);
 
 export default db;
