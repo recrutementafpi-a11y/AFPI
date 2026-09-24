@@ -38,7 +38,7 @@ export default function LoginPage() {
     <div className="flex-1 flex items-center justify-center bg-slate-50 px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-blue-900">AFPI</h1>
+          <h1 className="text-2xl font-bold text-afpi-navy">AFPI</h1>
           <p className="text-slate-600 mt-1">Espace stagiaires — Planning &amp; émargement</p>
         </div>
         <form
@@ -56,7 +56,7 @@ export default function LoginPage() {
               autoComplete="username"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full rounded border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-afpi-navy"
               placeholder="prenom.nom@example.com"
             />
           </div>
@@ -71,7 +71,7 @@ export default function LoginPage() {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full rounded border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-afpi-navy"
               placeholder="••••••••"
             />
           </div>
@@ -79,7 +79,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded bg-blue-900 hover:bg-blue-800 disabled:opacity-60 text-white font-medium py-2 transition-colors"
+            className="w-full rounded bg-afpi-navy hover:bg-afpi-navy-dark disabled:opacity-60 text-white font-medium py-2 transition-colors"
           >
             {loading ? "Connexion..." : "Se connecter"}
           </button>

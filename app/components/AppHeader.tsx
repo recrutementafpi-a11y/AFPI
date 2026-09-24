@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import LogoMark from "./LogoMark";
 
 interface AppHeaderProps {
   prenom: string;
@@ -25,10 +26,13 @@ export default function AppHeader({ prenom, nom, role }: AppHeaderProps) {
   }
 
   return (
-    <header className="bg-blue-900 text-white">
+    <header className="bg-afpi-navy text-white">
       <div className="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-6">
-          <span className="font-bold text-lg tracking-tight">AFPI · Espace stagiaires</span>
+          <Link href="/planning" className="flex items-center gap-2">
+            <LogoMark className="h-9 w-9" />
+            <span className="font-bold text-lg tracking-tight">Espace stagiaires</span>
+          </Link>
           <nav className="hidden sm:flex gap-4 text-sm">
             <Link href="/planning" className="hover:underline">
               Planning
@@ -49,7 +53,7 @@ export default function AppHeader({ prenom, nom, role }: AppHeaderProps) {
           </span>
           <button
             onClick={logout}
-            className="rounded bg-blue-800 hover:bg-blue-700 px-3 py-1.5 transition-colors"
+            className="rounded bg-afpi-navy-dark hover:opacity-90 px-3 py-1.5 transition-opacity"
           >
             Déconnexion
           </button>

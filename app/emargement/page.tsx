@@ -5,21 +5,25 @@ import AppHeader from "@/app/components/AppHeader";
 
 interface SessionRow {
   id: number;
-  titre: string;
+  module_nom: string;
+  creneau: "matin" | "apres-midi";
   debut: string;
-  fin: string;
   groupe_nom: string;
   signed: number;
   total_stagiaires: number;
   my_signature: number;
 }
 
-function formatDateTime(iso: string) {
-  return new Date(iso).toLocaleString("fr-FR", {
+const CRENEAU_LABEL: Record<SessionRow["creneau"], string> = {
+  matin: "Matin · 8h-12h",
+  "apres-midi": "Après-midi · 13h-16h",
+};
+
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString("fr-FR", {
+    weekday: "short",
     day: "2-digit",
     month: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
   });
 }
 
@@ -35,11 +39,12 @@ export default async function EmargementIndexPage() {
       | undefined;
     rows = db
       .prepare(
-        `SELECT s.id, s.titre, s.debut, s.fin, g.nom as groupe_nom,
+        `SELECT s.id, m.nom as module_nom, s.creneau, s.debut, g.nom as groupe_nom,
                 0 as signed, 0 as total_stagiaires,
                 (SELECT COUNT(*) FROM emargements e WHERE e.session_id = s.id AND e.stagiaire_id = ?) as my_signature
          FROM sessions_formation s
          JOIN groupes g ON g.id = s.groupe_id
+         JOIN modules m ON m.id = s.module_id
          WHERE s.groupe_id = ? AND datetime(s.debut) <= datetime('now')
          ORDER BY s.debut DESC`
       )
@@ -47,12 +52,13 @@ export default async function EmargementIndexPage() {
   } else {
     rows = db
       .prepare(
-        `SELECT s.id, s.titre, s.debut, s.fin, g.nom as groupe_nom,
+        `SELECT s.id, m.nom as module_nom, s.creneau, s.debut, g.nom as groupe_nom,
                 (SELECT COUNT(*) FROM emargements e WHERE e.session_id = s.id) as signed,
                 (SELECT COUNT(*) FROM users u WHERE u.groupe_id = s.groupe_id AND u.role = 'stagiaire') as total_stagiaires,
                 0 as my_signature
          FROM sessions_formation s
          JOIN groupes g ON g.id = s.groupe_id
+         JOIN modules m ON m.id = s.module_id
          ORDER BY s.debut DESC`
       )
       .all() as SessionRow[];
@@ -82,9 +88,9 @@ export default async function EmargementIndexPage() {
               className="bg-white border border-slate-200 rounded-lg p-4 flex items-center justify-between gap-4"
             >
               <div>
-                <p className="font-medium text-slate-900">{s.titre}</p>
+                <p className="font-medium text-slate-900">{s.module_nom}</p>
                 <p className="text-sm text-slate-600">
-                  {formatDateTime(s.debut)} – {formatDateTime(s.fin)}
+                  {formatDate(s.debut)} · {CRENEAU_LABEL[s.creneau]}
                 </p>
                 {session.role !== "stagiaire" && (
                   <p className="text-xs text-slate-500 mt-1">
@@ -97,7 +103,7 @@ export default async function EmargementIndexPage() {
                 className={`shrink-0 text-sm rounded px-3 py-1.5 transition-colors ${
                   session.role === "stagiaire" && s.my_signature
                     ? "bg-green-100 text-green-800"
-                    : "bg-blue-900 hover:bg-blue-800 text-white"
+                    : "bg-afpi-navy hover:bg-afpi-navy-dark text-white"
                 }`}
               >
                 {session.role === "stagiaire"

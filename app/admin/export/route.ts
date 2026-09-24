@@ -14,7 +14,11 @@ export async function GET(req: NextRequest) {
   }
 
   const formationSession = db
-    .prepare("SELECT titre, debut FROM sessions_formation WHERE id = ?")
+    .prepare(
+      `SELECT m.nom as titre, s.debut FROM sessions_formation s
+       JOIN modules m ON m.id = s.module_id
+       WHERE s.id = ?`
+    )
     .get(sessionId) as { titre: string; debut: string } | undefined;
   if (!formationSession) {
     return NextResponse.json({ error: "Séance introuvable." }, { status: 404 });

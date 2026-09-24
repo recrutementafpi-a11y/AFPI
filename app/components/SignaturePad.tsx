@@ -109,7 +109,7 @@ export default function SignaturePad({ sessionId }: { sessionId: number }) {
           onClick={submit}
           type="button"
           disabled={submitting}
-          className="text-sm rounded bg-blue-900 hover:bg-blue-800 disabled:opacity-60 text-white px-4 py-1.5"
+          className="text-sm rounded bg-afpi-navy hover:bg-afpi-navy-dark disabled:opacity-60 text-white px-4 py-1.5"
         >
           {submitting ? "Enregistrement..." : "Valider ma signature"}
         </button>

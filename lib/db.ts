@@ -34,12 +34,25 @@ db.exec(`
     created_at TEXT NOT NULL DEFAULT (datetime('now'))
   );
 
+  CREATE TABLE IF NOT EXISTS modules (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nom TEXT NOT NULL
+  );
+
+  CREATE TABLE IF NOT EXISTS formateur_modules (
+    formateur_id INTEGER NOT NULL REFERENCES users(id),
+    module_id INTEGER NOT NULL REFERENCES modules(id),
+    PRIMARY KEY (formateur_id, module_id)
+  );
+
   CREATE TABLE IF NOT EXISTS sessions_formation (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     groupe_id INTEGER NOT NULL REFERENCES groupes(id),
+    module_id INTEGER NOT NULL REFERENCES modules(id),
     formateur_id INTEGER REFERENCES users(id),
-    titre TEXT NOT NULL,
     lieu TEXT,
+    date TEXT NOT NULL,
+    creneau TEXT NOT NULL CHECK (creneau IN ('matin', 'apres-midi')),
     debut TEXT NOT NULL,
     fin TEXT NOT NULL,
     created_at TEXT NOT NULL DEFAULT (datetime('now'))

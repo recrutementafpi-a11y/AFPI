@@ -7,13 +7,18 @@ import SignaturePad from "@/app/components/SignaturePad";
 
 interface FormationSession {
   id: number;
-  titre: string;
+  module_nom: string;
+  creneau: "matin" | "apres-midi";
   lieu: string | null;
   debut: string;
-  fin: string;
   groupe_id: number;
   groupe_nom: string;
 }
+
+const CRENEAU_LABEL: Record<FormationSession["creneau"], string> = {
+  matin: "Matin · 8h-12h",
+  "apres-midi": "Après-midi · 13h-16h",
+};
 
 interface EmargementRow {
   stagiaire_id: number;
@@ -23,13 +28,11 @@ interface EmargementRow {
   signed_at: string | null;
 }
 
-function formatDateTime(iso: string) {
-  return new Date(iso).toLocaleString("fr-FR", {
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString("fr-FR", {
     weekday: "long",
     day: "2-digit",
     month: "long",
-    hour: "2-digit",
-    minute: "2-digit",
   });
 }
 
@@ -47,9 +50,10 @@ export default async function EmargementDetailPage({
 
   const formationSession = db
     .prepare(
-      `SELECT s.id, s.titre, s.lieu, s.debut, s.fin, s.groupe_id, g.nom as groupe_nom
+      `SELECT s.id, m.nom as module_nom, s.creneau, s.lieu, s.debut, s.groupe_id, g.nom as groupe_nom
        FROM sessions_formation s
        JOIN groupes g ON g.id = s.groupe_id
+       JOIN modules m ON m.id = s.module_id
        WHERE s.id = ?`
     )
     .get(sessionId) as FormationSession | undefined;
@@ -72,12 +76,12 @@ export default async function EmargementDetailPage({
       <>
         <AppHeader prenom={session.prenom!} nom={session.nom!} role={session.role} />
         <main className="flex-1 mx-auto w-full max-w-2xl px-4 py-8">
-          <Link href="/emargement" className="text-sm text-blue-800 hover:underline">
+          <Link href="/emargement" className="text-sm text-afpi-navy hover:underline">
             ← Retour
           </Link>
-          <h1 className="text-xl font-bold text-slate-900 mt-2 mb-1">{formationSession.titre}</h1>
+          <h1 className="text-xl font-bold text-slate-900 mt-2 mb-1">{formationSession.module_nom}</h1>
           <p className="text-slate-600 text-sm mb-6">
-            {formatDateTime(formationSession.debut)} – {formatDateTime(formationSession.fin)}
+            {formatDate(formationSession.debut)} · {CRENEAU_LABEL[formationSession.creneau]}
             {formationSession.lieu ? ` · ${formationSession.lieu}` : ""}
           </p>
 
@@ -120,20 +124,20 @@ export default async function EmargementDetailPage({
     <>
       <AppHeader prenom={session.prenom!} nom={session.nom!} role={session.role} />
       <main className="flex-1 mx-auto w-full max-w-2xl px-4 py-8">
-        <Link href="/emargement" className="text-sm text-blue-800 hover:underline">
+        <Link href="/emargement" className="text-sm text-afpi-navy hover:underline">
           ← Retour
         </Link>
         <div className="flex items-center justify-between mt-2 mb-1">
-          <h1 className="text-xl font-bold text-slate-900">{formationSession.titre}</h1>
+          <h1 className="text-xl font-bold text-slate-900">{formationSession.module_nom}</h1>
           <Link
             href={`/admin/export?sessionId=${sessionId}`}
-            className="text-sm rounded border border-blue-900 text-blue-900 px-3 py-1.5 hover:bg-blue-50"
+            className="text-sm rounded border border-afpi-navy text-afpi-navy px-3 py-1.5 hover:bg-afpi-navy/5"
           >
             Exporter en CSV
           </Link>
         </div>
         <p className="text-slate-600 text-sm mb-6">
-          {formatDateTime(formationSession.debut)} – {formatDateTime(formationSession.fin)}
+          {formatDate(formationSession.debut)} · {CRENEAU_LABEL[formationSession.creneau]}
           {formationSession.lieu ? ` · ${formationSession.lieu}` : ""} · Groupe{" "}
           {formationSession.groupe_nom} · {signedCount}/{stagiaires.length} signatures
         </p>
