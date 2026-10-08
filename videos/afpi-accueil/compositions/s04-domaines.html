@@ -2,21 +2,21 @@
 <html lang="fr"><head><meta charset="UTF-8"></head><body>
 <template>
 <style>
-#s04-root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif;font-weight:700;color:#F4F1EA}
+#s04-root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif;font-weight:700;color:#0B1B33}
 #s04-root *{box-sizing:border-box}
 .abs{position:absolute}
 .disp{font-family:"Oswald",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.01em;line-height:1}
 .mono{font-family:"IBM Plex Mono",monospace;font-weight:400;letter-spacing:.08em;text-transform:uppercase}
-.ac{color:#E2061B} .wm{color:#FF7A1A} .mut{color:#9FB0C8}
-.card{background:#12294B;border-radius:14px}
+.ac{color:#E2061B} .wm{color:#F26A00} .mut{color:#4A5C78}
+.card{background:#FFFFFF;border-radius:14px;box-shadow:0 10px 34px rgba(31,78,150,.16)}
 
 #s4-h{position:absolute;left:101px;top:70px;font-size:96px;white-space:nowrap} #s4-h span{color:#E2061B}
-.s4c{position:absolute;top:240px;width:410px;height:660px;background:#12294B;border-radius:14px;overflow:hidden;border-top:6px solid #1F4E96}
+.s4c{position:absolute;top:240px;width:410px;height:660px;background:#FFFFFF;border-radius:14px;overflow:hidden;border-top:6px solid #1F4E96;box-shadow:0 10px 34px rgba(31,78,150,.16)}
 .s4ph{position:absolute;left:0;top:0;width:410px;height:300px;overflow:hidden}
 .s4img{position:absolute;inset:0;background-size:cover}
 .s4disc{position:absolute;right:20px;top:240px;width:92px;height:92px;border-radius:50%;background:#E2061B;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.4)}
 .s4t{position:absolute;left:26px;top:330px;width:350px;font-size:54px;line-height:1.02}
-.s4s{position:absolute;left:26px;top:430px;width:360px;font-size:25px;font-weight:400;color:#9FB0C8;line-height:1.42}
+.s4s{position:absolute;left:26px;top:430px;width:360px;font-size:25px;font-weight:400;color:#4A5C78;line-height:1.42}
 </style>
 <div id="s04-root" data-composition-id="s04" data-width="1920" data-height="1080" style="">
 <div id="s4-h" class="disp">Quatre <span>domaines</span></div><div class="s4c" id="s4-c0" style="left:101px">
@@ -39,18 +39,18 @@ tl.fromTo("#s4-h",{y:-50,opacity:0},{y:0,opacity:1,duration:.6,ease:"expo.out"},
 tl.fromTo("#s4-c0",{x:160,opacity:0},{x:0,opacity:1,duration:.7,ease:"power4.out"},2.01);
 tl.fromTo("#s4-i0",{scale:1.22},{scale:1,duration:4.5,ease:"power1.out"},2.01);
 tl.fromTo("#s4-c0",{borderTopColor:"#1F4E96"},{borderTopColor:"#E2061B",duration:.3,immediateRender:false},2.31);
-tl.fromTo("#s4-c1",{x:160,opacity:0},{x:0,opacity:1,duration:.7,ease:"power4.out"},5.24);
-tl.fromTo("#s4-i1",{scale:1.22},{scale:1,duration:4.5,ease:"power1.out"},5.24);
-tl.fromTo("#s4-c1",{borderTopColor:"#1F4E96"},{borderTopColor:"#E2061B",duration:.3,immediateRender:false},5.54);
-tl.to("#s4-c0",{borderTopColor:"#1F4E96",duration:.4},5.54);
-tl.fromTo("#s4-c2",{x:160,opacity:0},{x:0,opacity:1,duration:.7,ease:"power4.out"},7.95);
-tl.fromTo("#s4-i2",{scale:1.22},{scale:1,duration:4.5,ease:"power1.out"},7.95);
-tl.fromTo("#s4-c2",{borderTopColor:"#1F4E96"},{borderTopColor:"#E2061B",duration:.3,immediateRender:false},8.25);
-tl.to("#s4-c1",{borderTopColor:"#1F4E96",duration:.4},8.25);
-tl.fromTo("#s4-c3",{x:160,opacity:0},{x:0,opacity:1,duration:.7,ease:"power4.out"},11.07);
-tl.fromTo("#s4-i3",{scale:1.22},{scale:1,duration:4.5,ease:"power1.out"},11.07);
-tl.fromTo("#s4-c3",{borderTopColor:"#1F4E96"},{borderTopColor:"#E2061B",duration:.3,immediateRender:false},11.37);
-tl.to("#s4-c2",{borderTopColor:"#1F4E96",duration:.4},11.37);
+tl.fromTo("#s4-c1",{x:160,opacity:0},{x:0,opacity:1,duration:.7,ease:"power4.out"},5.92);
+tl.fromTo("#s4-i1",{scale:1.22},{scale:1,duration:4.5,ease:"power1.out"},5.92);
+tl.fromTo("#s4-c1",{borderTopColor:"#1F4E96"},{borderTopColor:"#E2061B",duration:.3,immediateRender:false},6.22);
+tl.to("#s4-c0",{borderTopColor:"#1F4E96",duration:.4},6.22);
+tl.fromTo("#s4-c2",{x:160,opacity:0},{x:0,opacity:1,duration:.7,ease:"power4.out"},9.11);
+tl.fromTo("#s4-i2",{scale:1.22},{scale:1,duration:4.5,ease:"power1.out"},9.11);
+tl.fromTo("#s4-c2",{borderTopColor:"#1F4E96"},{borderTopColor:"#E2061B",duration:.3,immediateRender:false},9.41);
+tl.to("#s4-c1",{borderTopColor:"#1F4E96",duration:.4},9.41);
+tl.fromTo("#s4-c3",{x:160,opacity:0},{x:0,opacity:1,duration:.7,ease:"power4.out"},13.05);
+tl.fromTo("#s4-i3",{scale:1.22},{scale:1,duration:4.5,ease:"power1.out"},13.05);
+tl.fromTo("#s4-c3",{borderTopColor:"#1F4E96"},{borderTopColor:"#E2061B",duration:.3,immediateRender:false},13.35);
+tl.to("#s4-c2",{borderTopColor:"#1F4E96",duration:.4},13.35);
 
 window.__timelines["s04"] = tl;
 </script>
