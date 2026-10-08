@@ -1,0 +1,212 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Storyboard AFPI Accueil v1</title><style>
+:root{--bg:#0B1B33;--raised:#12294B;--blue:#1F4E96;--text:#F4F1EA;--mut:#9FB0C8;--red:#E2061B;--warm:#FF7A1A}
+*{box-sizing:border-box;margin:0}
+body{background:#060F1E;color:var(--text);font-family:Montserrat,"Segoe UI",Arial,sans-serif;padding:40px 5vw 80px}
+h1{font-family:Oswald,Bahnschrift,"Arial Narrow",Impact,sans-serif;font-size:44px;text-transform:uppercase;letter-spacing:.02em}
+.dek{color:var(--mut);margin:8px 0 12px;max-width:760px;line-height:1.5}
+.tag{display:inline-block;font:12px "IBM Plex Mono",monospace;border:1px solid var(--mut);color:var(--mut);padding:4px 10px;border-radius:99px;margin-right:6px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:32px}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:700px){.grid{grid-template-columns:1fr}}
+.cell{min-width:0}
+.frame{position:relative;aspect-ratio:16/9;container-type:inline-size;overflow:hidden;background:var(--bg);border-radius:8px;border:1px solid #1F3558}
+.frame::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(159,176,200,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(159,176,200,.08) 1px,transparent 1px);background-size:4cqw 4cqw}
+.abs{position:absolute}.ph{position:absolute;background-size:cover;background-position:center;border-radius:.5cqw}
+.disp{font-family:Oswald,Bahnschrift,"Arial Narrow",Impact,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.01em}
+.body{font-family:Montserrat,"Segoe UI",Arial,sans-serif;font-weight:500}.mono{font-family:"IBM Plex Mono",Consolas,monospace}
+.ac{color:var(--red)}.mut{color:var(--mut);font-weight:500;text-transform:none;font-family:Montserrat,Arial,sans-serif;font-size:.62em}
+.spark{position:absolute;width:.8cqw;height:.8cqw;background:var(--warm);border-radius:50%;box-shadow:0 0 1.4cqw var(--warm)}
+.s1{left:24cqw;top:9cqw}.s2{left:72cqw;top:12cqw}.s3{left:66cqw;top:5cqw}
+.label{display:flex;justify-content:space-between;font:12px "IBM Plex Mono",monospace;margin:10px 2px 4px;color:var(--text)}
+.label span:last-child{color:var(--mut)}
+.note{font-size:14px;line-height:1.5;color:var(--mut)}.note b{color:var(--text)}
+.chip{display:inline-block;margin-top:8px;font:11px "IBM Plex Mono",monospace;border:1px solid var(--red);color:var(--red);padding:2px 8px;border-radius:99px}
+.seams{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.seams span{font:11px "IBM Plex Mono",monospace;border:1px solid #1F3558;padding:3px 8px;border-radius:99px}
+.sw{display:inline-flex;align-items:center;gap:6px;margin:4px 12px 4px 0;font:12px "IBM Plex Mono",monospace}.sw i{width:20px;height:20px;border-radius:4px;display:inline-block;border:1px solid #fff3}
+.card{background:var(--raised);border-radius:8px;padding:20px;font-size:14px;line-height:1.6}
+.card h3{font-family:Oswald,sans-serif;text-transform:uppercase;margin-bottom:8px}
+</style></head><body>
+<h1>AFPI Région Dunkerquoise · Vidéo d'accueil</h1>
+<p class="dek">Storyboard v1 : les 14 scènes au moment fort de chaque plan. Aucune animation ici : le placement, les textes et les couleurs sont ceux de la version finale.</p>
+<span class="tag">1920×1080</span><span class="tag">2 min 48</span><span class="tag">14 scènes</span><span class="tag">voix off FR</span><span class="tag">v1</span>
+<div class="grid"><section class="cell" id="frame-01">
+<div class="frame">
+<div class="spark s1"></div><div class="spark s2"></div><div class="spark s3"></div>
+<div class="abs" style="left:32cqw;top:7cqw;width:36cqw;height:15.5cqw;background:#fff;border-radius:.6cqw;overflow:hidden"><img src="../../public/logo-afpi.png" style="width:100%;height:100%;object-fit:contain"></div>
+<div class="abs disp" style="left:0;right:0;top:26cqw;text-align:center;font-size:5.6cqw;line-height:1.05">Bienvenue à<br><span class="ac">l'AFPI Région Dunkerquoise</span></div>
+<div class="abs mono" style="left:3cqw;bottom:2cqw;font-size:1.2cqw">01 · LOGO · ÉTINCELLE DE SOUDURE</div>
+</div>
+<div class="label"><span>01 · OUVERTURE</span><span>frame-01 · 0–9 s</span></div>
+<p class="note">Le logo se construit pièce par pièce sous une étincelle de soudure, puis le titre monte en deux lignes. Sortie : volet vers la gauche.</p><span class="chip">volet mécanique ←</span></section>
+<section class="cell" id="frame-02">
+<div class="frame">
+<svg class="abs" viewBox="0 0 100 56.25" style="left:0;top:0;width:100%;height:100%">
+ <path d="M0 40 C14 38 20 30 30 31 C40 32 42 24 52 22 C60 20 68 22 74 18 L100 16 L100 56 L0 56 Z" fill="#12294B"/>
+ <path d="M0 40 C14 38 20 30 30 31 C40 32 42 24 52 22 C60 20 68 22 74 18 L100 16" fill="none" stroke="#2A8C5E" stroke-width=".7"/>
+ <circle cx="30" cy="31" r="1.6" fill="#E2061B"/><circle cx="52" cy="22" r="1.6" fill="#E2061B"/>
+ <path d="M30 31 L52 22" stroke="#9FB0C8" stroke-width=".25" stroke-dasharray="1 .8"/>
+ <text x="3" y="6" fill="#9FB0C8" font-size="1.7" font-family="IBM Plex Mono, monospace">MER DU NORD</text>
+</svg>
+<div class="abs mono" style="left:3cqw;top:3cqw;font-size:1.3cqw;color:#9FB0C8">Réseau Pôle Formation · l'outil de formation de la métallurgie</div>
+<div class="ph" style="background-image:url(public-media/facade-dunkerque.jpg);left:6cqw;top:30cqw;width:26cqw;height:15cqw"></div>
+<div class="abs disp" style="left:6cqw;top:46cqw;font-size:2cqw">Dunkerque<br><span class="mut">Centre Jacques Balloy</span></div>
+<div class="ph" style="background-image:url(public-media/facade-gravelines.jpg);left:64cqw;top:5cqw;width:26cqw;height:17cqw"></div>
+<div class="abs disp" style="left:64cqw;top:23cqw;font-size:2cqw">Gravelines<br><span class="mut">Antenne des Rives de l'Aa</span></div>
+</div>
+<div class="label"><span>02 · QUI SOMMES-NOUS</span><span>frame-02 · 9–22 s</span></div>
+<p class="note">Zoom sur la carte du littoral, deux repères rouges s'allument, la ligne les relie, puis chaque repère s'ouvre sur la photo du centre. Nom du réseau à confirmer.</p><span class="chip">zoom-fondu vers les mots</span></section>
+<section class="cell" id="frame-03">
+<div class="frame">
+<div class="abs disp" style="left:6cqw;top:3cqw;font-size:7.4cqw;line-height:.98">Analyser<br>Conseiller<br>Former<br>Professionnaliser<br><span class="ac">Développer les compétences</span></div>
+<div class="abs" style="left:0;right:0;bottom:0;height:9cqw;background:#E2061B"></div>
+<div class="abs disp" style="left:6cqw;bottom:2cqw;font-size:4cqw">Créer de la valeur par la formation</div>
+</div>
+<div class="label"><span>03 · NOS MISSIONS</span><span>frame-03 · 22–34 s</span></div>
+<p class="note">Les mots tombent un par un sur un coup sec, le dernier s'allume en rouge. La bande rouge monte du bas avec la phrase de conclusion (point fixe, rien ne bouge).</p><span class="chip">bande rouge qui balaie</span></section>
+<section class="cell" id="frame-04">
+<div class="frame"><div class="abs mono" style="left:3cqw;top:3cqw;font-size:1.3cqw;color:#9FB0C8">4 DOMAINES DE FORMATION</div><div class="abs" style="left:3cqw;top:8cqw;width:21cqw;height:42cqw;background:#12294B;border-radius:.8cqw;overflow:hidden">
+ <div class="ph" style="position:absolute;left:0;top:0;width:100%;height:22cqw;background-image:url(public-media/mecanique-casque-jaune.jpg);background-position:center"></div>
+ <div class="abs" style="left:1.4cqw;top:23cqw;right:1.2cqw"><div class="disp" style="font-size:2cqw;line-height:1.05">Maintenance</div><div class="body" style="font-size:1.35cqw;margin-top:1cqw;color:#9FB0C8;line-height:1.35">Électrotechnique · mécanique · hydraulique · pneumatique · automatisme · instrumentation et régulation</div></div>
+ <div class="abs" style="right:1.2cqw;top:1.2cqw;width:3.4cqw;height:3.4cqw;background:#E2061B;border-radius:50%"></div></div><div class="abs" style="left:26cqw;top:8cqw;width:21cqw;height:42cqw;background:#12294B;border-radius:.8cqw;overflow:hidden">
+ <div class="ph" style="position:absolute;left:0;top:0;width:100%;height:22cqw;background-image:url(public-media/soudeur-afpi-bleu.jpg);background-position:center"></div>
+ <div class="abs" style="left:1.4cqw;top:23cqw;right:1.2cqw"><div class="disp" style="font-size:2cqw;line-height:1.05">Chaudronnerie Tuyauterie Soudage</div><div class="body" style="font-size:1.35cqw;margin-top:1cqw;color:#9FB0C8;line-height:1.35"></div></div>
+ <div class="abs" style="right:1.2cqw;top:1.2cqw;width:3.4cqw;height:3.4cqw;background:#E2061B;border-radius:50%"></div></div><div class="abs" style="left:49cqw;top:8cqw;width:21cqw;height:42cqw;background:#12294B;border-radius:.8cqw;overflow:hidden">
+ <div class="ph" style="position:absolute;left:0;top:0;width:100%;height:22cqw;background-image:url(public-media/nacelle-pont-roulant.jpg);background-position:center"></div>
+ <div class="abs" style="left:1.4cqw;top:23cqw;right:1.2cqw"><div class="disp" style="font-size:2cqw;line-height:1.05">Sécurité</div><div class="body" style="font-size:1.35cqw;margin-top:1cqw;color:#9FB0C8;line-height:1.35">SST · travaux en hauteur · habilitations · amiante · ATEX · CATEC · conduite d'engins</div></div>
+ <div class="abs" style="right:1.2cqw;top:1.2cqw;width:3.4cqw;height:3.4cqw;background:#E2061B;border-radius:50%"></div></div><div class="abs" style="left:72cqw;top:8cqw;width:21cqw;height:42cqw;background:#12294B;border-radius:.8cqw;overflow:hidden">
+ <div class="ph" style="position:absolute;left:0;top:0;width:100%;height:22cqw;background-image:url(public-media/formatrice-anglais.jpg);background-position:center"></div>
+ <div class="abs" style="left:1.4cqw;top:23cqw;right:1.2cqw"><div class="disp" style="font-size:2cqw;line-height:1.05">Tertiaire</div><div class="body" style="font-size:1.35cqw;margin-top:1cqw;color:#9FB0C8;line-height:1.35">Management · gestion de projet · langues étrangères · bureautique</div></div>
+ <div class="abs" style="right:1.2cqw;top:1.2cqw;width:3.4cqw;height:3.4cqw;background:#E2061B;border-radius:50%"></div></div></div>
+<div class="label"><span>04 · NOS DOMAINES</span><span>frame-04 · 34–56 s</span></div>
+<p class="note">Quatre cartes entrent à tour de rôle (cascade vers la gauche), chaque carte a son pictogramme rouge et sa photo. La carte active monte, les autres se calent derrière.</p><span class="chip">cartes balayées ←</span></section>
+<section class="cell" id="frame-05">
+<div class="frame"><div class="abs disp" style="left:5cqw;top:3.5cqw;font-size:4.6cqw">Chacun trouve sa place</div><div class="abs" style="left:5cqw;top:12cqw;width:20cqw;height:30cqw;background:#12294B;border-radius:.8cqw;border-top:.5cqw solid #E2061B">
+<div class="abs mono" style="left:1.5cqw;top:1.5cqw;font-size:1.4cqw;color:#9FB0C8">01</div>
+<div class="abs" style="left:5.5cqw;top:6cqw;width:9cqw;height:9cqw;border:.5cqw solid #F4F1EA;border-radius:50%"></div>
+<div class="abs disp" style="left:1.5cqw;right:1.5cqw;top:20cqw;font-size:2.6cqw;line-height:1.05;text-align:center">Entreprises</div></div><div class="abs" style="left:27.5cqw;top:12cqw;width:20cqw;height:30cqw;background:#12294B;border-radius:.8cqw;border-top:.5cqw solid #E2061B">
+<div class="abs mono" style="left:1.5cqw;top:1.5cqw;font-size:1.4cqw;color:#9FB0C8">02</div>
+<div class="abs" style="left:5.5cqw;top:6cqw;width:9cqw;height:9cqw;border:.5cqw solid #F4F1EA;border-radius:50%"></div>
+<div class="abs disp" style="left:1.5cqw;right:1.5cqw;top:20cqw;font-size:2.6cqw;line-height:1.05;text-align:center">Salariés</div></div><div class="abs" style="left:50cqw;top:12cqw;width:20cqw;height:30cqw;background:#12294B;border-radius:.8cqw;border-top:.5cqw solid #E2061B">
+<div class="abs mono" style="left:1.5cqw;top:1.5cqw;font-size:1.4cqw;color:#9FB0C8">03</div>
+<div class="abs" style="left:5.5cqw;top:6cqw;width:9cqw;height:9cqw;border:.5cqw solid #F4F1EA;border-radius:50%"></div>
+<div class="abs disp" style="left:1.5cqw;right:1.5cqw;top:20cqw;font-size:2.6cqw;line-height:1.05;text-align:center">Demandeurs d'emploi</div></div><div class="abs" style="left:72.5cqw;top:12cqw;width:20cqw;height:30cqw;background:#12294B;border-radius:.8cqw;border-top:.5cqw solid #E2061B">
+<div class="abs mono" style="left:1.5cqw;top:1.5cqw;font-size:1.4cqw;color:#9FB0C8">04</div>
+<div class="abs" style="left:5.5cqw;top:6cqw;width:9cqw;height:9cqw;border:.5cqw solid #F4F1EA;border-radius:50%"></div>
+<div class="abs disp" style="left:1.5cqw;right:1.5cqw;top:20cqw;font-size:2.6cqw;line-height:1.05;text-align:center">Jeunes & alternance</div></div></div>
+<div class="label"><span>05 · POUR QUI</span><span>frame-05 · 56–65 s</span></div>
+<p class="note">Quatre profils entrent en cascade, chaque pictogramme se dessine d'un trait. Un seul focal : le titre.</p><span class="chip">tuiles basculantes</span></section>
+<section class="cell" id="frame-06">
+<div class="frame"><div class="abs disp" style="left:5cqw;top:4cqw;font-size:4.6cqw">Une qualité <span class="ac">reconnue</span></div><div class="abs" style="left:5cqw;top:18cqw;width:15cqw;height:15cqw;border:.5cqw solid #F4F1EA;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center"><span class="disp" style="font-size:2.3cqw;line-height:1.05">Qualiopi</span></div><div class="abs" style="left:22cqw;top:18cqw;width:15cqw;height:15cqw;border:.5cqw solid #F4F1EA;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center"><span class="disp" style="font-size:2.3cqw;line-height:1.05">CQPM</span></div><div class="abs" style="left:39cqw;top:18cqw;width:15cqw;height:15cqw;border:.5cqw solid #F4F1EA;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center"><span class="disp" style="font-size:2.3cqw;line-height:1.05">TOSA</span></div><div class="abs" style="left:56cqw;top:18cqw;width:15cqw;height:15cqw;border:.5cqw solid #F4F1EA;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center"><span class="disp" style="font-size:2.3cqw;line-height:1.05">TOEIC</span></div><div class="abs" style="left:73cqw;top:18cqw;width:15cqw;height:15cqw;border:.5cqw solid #F4F1EA;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center"><span class="disp" style="font-size:2.3cqw;line-height:1.05">Certificat Voltaire</span></div><div class="abs mono" style="left:5cqw;bottom:3cqw;font-size:1.3cqw;color:#9FB0C8">LOGOS OFFICIELS À FOURNIR · ICI : PLACEHOLDERS</div></div>
+<div class="label"><span>06 · QUALITÉ</span><span>frame-06 · 65–74 s</span></div>
+<p class="note">Cinq badges se posent comme des tampons, avec un petit rebond. Les logos officiels remplacent les ronds quand vous les fournirez.</p><span class="chip">volet vers le bas</span></section>
+<section class="cell" id="frame-07">
+<div class="frame">
+<div class="abs" style="left:0;top:0;width:34cqw;height:100%;background:#E2061B"></div>
+<div class="abs disp" style="left:3cqw;top:10cqw;font-size:6.6cqw;line-height:1;width:29cqw">Votre arrivée</div>
+<div class="abs disp" style="left:40cqw;top:17cqw;font-size:7cqw;line-height:.95">au centre</div>
+<div class="abs" style="left:40cqw;top:36cqw;width:40cqw;height:.6cqw;background:#F4F1EA"></div>
+<div class="abs mono" style="left:40cqw;top:39cqw;font-size:1.4cqw;color:#9FB0C8">PARTIE 2 · QUELQUES REPÈRES AVANT DE COMMENCER</div>
+</div>
+<div class="label"><span>07 · TRANSITION</span><span>frame-07 · 74–79 s</span></div>
+<p class="note">Un panneau rouge ferme la partie 1 et laisse la place au titre. C'est le seul écran de transition, il dure 5 secondes.</p><span class="chip">volet rouge ←</span></section>
+<section class="cell" id="frame-08">
+<div class="frame">
+<svg class="abs" viewBox="0 0 100 56.25" style="left:0;top:0;width:100%;height:100%">
+ <rect x="4" y="8" width="52" height="40" fill="#12294B" rx="1"/>
+ <rect x="4" y="24" width="52" height="8" fill="#0B1B33"/>
+ <path d="M6 28 L52 28" stroke="#9FB0C8" stroke-width=".3" stroke-dasharray="2 1.5"/>
+ <g stroke="#F4F1EA" stroke-width=".4" fill="none"><path d="M10 32 V46 M20 32 V46 M30 32 V46 M40 32 V46 M50 32 V46"/></g>
+ <rect x="21.5" y="35" width="7" height="10" rx="1.2" fill="#E2061B"/>
+ <path d="M25 22 C25 28 25 30 25 33" stroke="#FF7A1A" stroke-width=".8" fill="none" stroke-dasharray="1.5 1"/>
+ <path d="M23.8 31.5 L25 34 L26.2 31.5" fill="#FF7A1A"/>
+ <text x="6" y="6" fill="#9FB0C8" font-size="1.6" font-family="IBM Plex Mono, monospace">SENS DE CIRCULATION · STATIONNEMENT EN MARCHE ARRIÈRE</text>
+ <circle cx="79" cy="28" r="15" fill="none" stroke="#F4F1EA" stroke-width="1"/>
+ <path d="M79 28 L79 17" stroke="#F4F1EA" stroke-width="1" stroke-linecap="round"/>
+ <path d="M79 28 L86 31" stroke="#E2061B" stroke-width="1.2" stroke-linecap="round"/>
+ <path d="M79 13 A15 15 0 0 1 94 28" stroke="#E2061B" stroke-width="1.6" fill="none"/>
+</svg>
+<div class="abs disp" style="left:66cqw;top:44cqw;font-size:3cqw;text-align:center;width:26cqw"><span class="ac">8h00</span>–12h00<br><span class="ac">13h00</span>–16h00</div>
+</div>
+<div class="label"><span>08 · ACCÈS ET HORAIRES</span><span>frame-08 · 79–93 s</span></div>
+<p class="note">Vue de dessus : la voiture entre, se range en marche arrière dans la place, la flèche orange se trace. À droite, l'horloge anime les deux plages horaires.</p><span class="chip">volet ←</span></section>
+<section class="cell" id="frame-09">
+<div class="frame"><div class="abs disp" style="left:5cqw;top:4cqw;font-size:4.4cqw;line-height:1">EPI<br><span class="ac">obligatoires</span></div><div class="abs body" style="left:5cqw;top:19cqw;font-size:1.6cqw;width:24cqw;color:#9FB0C8;line-height:1.35">Indiqués sur votre convocation.<br>Contrôlés avant toute prise de poste.</div><div class="ph" style="background-image:url(public-media/portrait-epi-detoure.png);left:38cqw;top:2cqw;width:34cqw;height:51cqw;background-size:contain;background-repeat:no-repeat;background-position:center bottom"></div><div class="abs" style="left:5cqw;top:30cqw;width:12cqw;text-align:center"><div style="width:7.5cqw;height:7.5cqw;border:.5cqw solid #F4F1EA;border-radius:50%;margin:0 auto"></div><div class="disp" style="font-size:1.8cqw;margin-top:1cqw;line-height:1.05">Casque</div></div><div class="abs" style="left:19cqw;top:30cqw;width:12cqw;text-align:center"><div style="width:7.5cqw;height:7.5cqw;border:.5cqw solid #F4F1EA;border-radius:50%;margin:0 auto"></div><div class="disp" style="font-size:1.8cqw;margin-top:1cqw;line-height:1.05">Lunettes</div></div><div class="abs" style="left:75cqw;top:6cqw;width:12cqw;text-align:center"><div style="width:7.5cqw;height:7.5cqw;border:.5cqw solid #F4F1EA;border-radius:50%;margin:0 auto"></div><div class="disp" style="font-size:1.8cqw;margin-top:1cqw;line-height:1.05">Chaussures de sécurité</div></div><div class="abs" style="left:75cqw;top:22cqw;width:12cqw;text-align:center"><div style="width:7.5cqw;height:7.5cqw;border:.5cqw solid #F4F1EA;border-radius:50%;margin:0 auto"></div><div class="disp" style="font-size:1.8cqw;margin-top:1cqw;line-height:1.05">Gants</div></div><div class="abs" style="left:75cqw;top:38cqw;width:12cqw;text-align:center"><div style="width:7.5cqw;height:7.5cqw;border:.5cqw solid #F4F1EA;border-radius:50%;margin:0 auto"></div><div class="disp" style="font-size:1.8cqw;margin-top:1cqw;line-height:1.05">Protections auditives</div></div></div>
+<div class="label"><span>09 · ÉQUIPEMENTS DE PROTECTION (EPI)</span><span>frame-09 · 93–105 s</span></div>
+<p class="note">Le portrait entre au centre, chaque EPI s'allume en rouge quand il est cité, et le portrait « se contrôle » avec une coche. Image du portrait à confirmer (aspect IA).</p><span class="chip">volet ←</span></section>
+<section class="cell" id="frame-10">
+<div class="frame"><div class="abs mono" style="left:3cqw;top:3cqw;font-size:1.3cqw;color:#9FB0C8">EN ATELIER · 3 RÉFLEXES</div><div class="abs" style="left:3cqw;top:8cqw;width:28cqw;height:40cqw;background:#12294B;border-radius:.8cqw;overflow:hidden;border-bottom:.5cqw solid #E2061B"><div class="ph" style="position:absolute;left:0;top:0;width:100%;height:20cqw;background-image:url(public-media/soudeur-afpi-bleu.jpg)"></div>
+<div class="abs disp" style="left:1.6cqw;right:1.6cqw;top:22cqw;font-size:2.5cqw;line-height:1.05">Pas de machine sans formation</div>
+<div class="abs body" style="left:1.6cqw;right:1.6cqw;top:31cqw;font-size:1.4cqw;line-height:1.35;color:#9FB0C8">Autorisation du formateur obligatoire.</div></div><div class="abs" style="left:35.5cqw;top:8cqw;width:28cqw;height:40cqw;background:#12294B;border-radius:.8cqw;overflow:hidden;border-bottom:.5cqw solid #E2061B"><div class="ph" style="position:absolute;left:0;top:0;width:100%;height:20cqw;background-image:url(public-media/responsable-talkie.jpg)"></div>
+<div class="abs disp" style="left:1.6cqw;right:1.6cqw;top:22cqw;font-size:2.5cqw;line-height:1.05">Accident ? Prévenez le responsable</div>
+<div class="abs body" style="left:1.6cqw;right:1.6cqw;top:31cqw;font-size:1.4cqw;line-height:1.35;color:#9FB0C8">Il appellera les secours.</div></div><div class="abs" style="left:68cqw;top:8cqw;width:28cqw;height:40cqw;background:#12294B;border-radius:.8cqw;overflow:hidden;border-bottom:.5cqw solid #E2061B">
+<div class="abs disp" style="left:1.6cqw;right:1.6cqw;top:4cqw;font-size:2.5cqw;line-height:1.05">Ordre Propreté Rangement</div>
+<div class="abs body" style="left:1.6cqw;right:1.6cqw;top:13cqw;font-size:1.4cqw;line-height:1.35;color:#9FB0C8"></div></div></div>
+<div class="label"><span>10 · EN ATELIER</span><span>frame-10 · 105–117 s</span></div>
+<p class="note">Trois panneaux : le deuxième est le plus lourd (le responsable appelle). Un panneau à la fois passe en avant, les autres reculent.</p><span class="chip">volet ←</span></section>
+<section class="cell" id="frame-11">
+<div class="frame"><div class="abs disp" style="left:6cqw;top:3cqw;font-size:4cqw">Règlement <span class="ac">intérieur</span></div><div class="abs mono" style="right:5cqw;top:5cqw;font-size:1.3cqw;color:#9FB0C8">AFFICHÉ DANS LE HALL D'ACCUEIL</div><div class="abs" style="left:6cqw;top:12cqw;width:88cqw;height:7cqw;display:flex;align-items:center;gap:2cqw;border-bottom:.2cqw solid #1F4E96">
+<div style="width:5cqw;height:5cqw;border-radius:50%;background:#E2061B;color:#fff;display:flex;align-items:center;justify-content:center;font-size:3cqw;font-weight:700">✕</div>
+<div class="disp" style="font-size:3cqw">Sorties interdites pendant les pauses</div></div><div class="abs" style="left:6cqw;top:19.5cqw;width:88cqw;height:7cqw;display:flex;align-items:center;gap:2cqw;border-bottom:.2cqw solid #1F4E96">
+<div style="width:5cqw;height:5cqw;border-radius:50%;background:#2A8C5E;color:#fff;display:flex;align-items:center;justify-content:center;font-size:3cqw;font-weight:700">✓</div>
+<div class="disp" style="font-size:3cqw">Respect des horaires</div></div><div class="abs" style="left:6cqw;top:27cqw;width:88cqw;height:7cqw;display:flex;align-items:center;gap:2cqw;border-bottom:.2cqw solid #1F4E96">
+<div style="width:5cqw;height:5cqw;border-radius:50%;background:#E2061B;color:#fff;display:flex;align-items:center;justify-content:center;font-size:3cqw;font-weight:700">✕</div>
+<div class="disp" style="font-size:3cqw">Ni nourriture ni boisson en salle et en atelier</div></div><div class="abs" style="left:6cqw;top:34.5cqw;width:88cqw;height:7cqw;display:flex;align-items:center;gap:2cqw;border-bottom:.2cqw solid #1F4E96">
+<div style="width:5cqw;height:5cqw;border-radius:50%;background:#E2061B;color:#fff;display:flex;align-items:center;justify-content:center;font-size:3cqw;font-weight:700">✕</div>
+<div class="disp" style="font-size:3cqw">Interdiction de fumer à l'intérieur</div></div><div class="abs" style="left:6cqw;top:42cqw;width:88cqw;height:7cqw;display:flex;align-items:center;gap:2cqw;border-bottom:.2cqw solid #1F4E96">
+<div style="width:5cqw;height:5cqw;border-radius:50%;background:#2A8C5E;color:#fff;display:flex;align-items:center;justify-content:center;font-size:3cqw;font-weight:700">✓</div>
+<div class="disp" style="font-size:3cqw">Zones fumeurs prévues</div></div></div>
+<div class="label"><span>11 · RÈGLEMENT INTÉRIEUR</span><span>frame-11 · 117–131 s</span></div>
+<p class="note">Chaque règle arrive en bandeau, avec son pictogramme rouge « interdit » ou vert « autorisé ». Les bandeaux se calent en haut au fur et à mesure.</p><span class="chip">volet rouge ←</span></section>
+<section class="cell" id="frame-12">
+<div class="frame">
+<div class="abs" style="left:0;top:0;width:100%;height:100%;background:#2B0A08"></div>
+<div class="abs" style="left:0;top:0;width:100%;height:1.2cqw;background:repeating-linear-gradient(135deg,#FF7A1A 0 2cqw,#2B0A08 2cqw 4cqw)"></div>
+<div class="abs disp" style="left:5cqw;top:3.5cqw;font-size:4.2cqw;line-height:1"><span style="color:#FF7A1A">Sécurité</span> incendie</div>
+<div class="abs body" style="left:5cqw;top:12cqw;width:33cqw;font-size:1.85cqw;line-height:1.5;color:#F4F1EA">
+<span class="disp" style="color:#FF7A1A;font-size:2.2cqw">1</span> Donnez l'alerte ou déclenchez l'alarme<br>
+<span class="disp" style="color:#FF7A1A;font-size:2.2cqw">2</span> Ne prenez aucun risque<br>
+<span class="disp" style="color:#FF7A1A;font-size:2.2cqw">3</span> N'ouvrez ni portes ni fenêtres<br>
+<span class="disp" style="color:#FF7A1A;font-size:2.2cqw">4</span> Issue de secours la plus proche, sans revenir en arrière<br>
+<span class="disp" style="color:#FF7A1A;font-size:2.2cqw">5</span> Point de rassemblement : attendez les consignes</div>
+<svg class="abs" viewBox="0 0 60 40" style="left:40cqw;top:9cqw;width:56cqw;height:40cqw">
+ <rect x="2" y="2" width="56" height="36" fill="none" stroke="#F4F1EA" stroke-width=".6"/>
+ <path d="M2 20 H22 M30 2 V14 M30 24 V38 M44 20 H58" stroke="#F4F1EA" stroke-width=".5" fill="none"/>
+ <rect x="8" y="26" width="5" height="5" fill="#E2061B"/>
+ <path d="M10.5 26 L10.5 20 L24 20 L24 8 L56 8" stroke="#FF7A1A" stroke-width="1.1" fill="none" stroke-dasharray="2 1.2"/>
+ <path d="M54 6 L57 8 L54 10" fill="#FF7A1A"/>
+ <rect x="50" y="3" width="6" height="2.4" fill="#2A8C5E"/>
+ <text x="28" y="5" fill="#2A8C5E" font-size="2" font-family="IBM Plex Mono, monospace">RASSEMBLEMENT</text>
+ <text x="3" y="35" fill="#9FB0C8" font-size="1.8" font-family="IBM Plex Mono, monospace">VOUS ÊTES ICI</text>
+</svg>
+</div>
+<div class="label"><span>12 · SÉCURITÉ INCENDIE</span><span>frame-12 · 131–153 s</span></div>
+<p class="note">Ambiance rouge/orange. Les cinq consignes arrivent une par une pendant que la flèche se trace de « vous êtes ici » jusqu'au point de rassemblement vert. Seul écran sans fond bleu nuit.</p><span class="chip">volet orange ←</span></section>
+<section class="cell" id="frame-13">
+<div class="frame">
+<div class="ph" style="background-image:url(public-media/equipe-groupe.jpg);left:0;top:0;width:100%;height:100%;background-position:center 30%"></div>
+<div class="abs" style="left:0;top:0;width:100%;height:100%;background:rgba(11,27,51,.6)"></div>
+<div class="abs disp" style="left:6cqw;top:6cqw;font-size:4.6cqw;line-height:1.05;width:46cqw">Toute l'équipe<br>est à votre <span class="ac">écoute.</span></div>
+<div class="abs disp" style="left:6cqw;bottom:6cqw;font-size:3.4cqw;color:#FF7A1A;width:46cqw">Excellente formation à tous !</div>
+</div>
+<div class="label"><span>13 · CLÔTURE</span><span>frame-13 · 153–160 s</span></div>
+<p class="note">Le seul vrai fondu enchaîné de la vidéo : la photo d'équipe apparaît doucement, les deux phrases arrivent l'une après l'autre. Photo générique à remplacer si vous avez une photo de l'équipe AFPI.</p><span class="chip">fondu doux</span></section>
+<section class="cell" id="frame-14">
+<div class="frame">
+<div class="abs" style="left:5cqw;top:5cqw;width:30cqw;height:13cqw;background:#fff;border-radius:.6cqw;overflow:hidden"><img src="../../public/logo-afpi.png" style="width:100%;height:100%;object-fit:contain"></div>
+<div class="abs disp" style="left:5cqw;top:22cqw;font-size:3.3cqw;line-height:1;width:48cqw">www.afpi-formation.com</div>
+<div class="abs body" style="left:5cqw;top:30cqw;font-size:2.4cqw;line-height:1.5"><span class="ac">03 28 60 80 30</span><br>accueil@afpi-formation.com</div>
+<div class="ph" style="background-image:url(public-media/facade-dunkerque.jpg);left:56cqw;top:5cqw;width:38cqw;height:19cqw"></div>
+<div class="abs body" style="left:56cqw;top:25cqw;font-size:1.7cqw;line-height:1.35"><b>Dunkerque · Centre Jacques Balloy</b><br><span class="mut">Z.A.E. du Pont Loby, Rue de Rome · 59640 Dunkerque</span></div>
+<div class="ph" style="background-image:url(public-media/facade-gravelines.jpg);left:56cqw;top:34cqw;width:38cqw;height:13cqw"></div>
+<div class="abs body" style="left:56cqw;top:48.5cqw;font-size:1.7cqw;line-height:1.35"><b>Gravelines · Antenne des Rives de l'Aa</b><br><span class="mut">Zone de la Leurette, Route du développement · 59820 Gravelines</span></div>
+</div>
+<div class="label"><span>14 · ÉCRAN DE FIN</span><span>frame-14 · 160–168 s</span></div>
+<p class="note">Le logo se reconstruit comme à l'ouverture (boucle de marque), le site s'écrit en capitales, le téléphone s'allume en rouge, puis les deux centres glissent à droite.</p><span class="chip">fin de vidéo, maintien 2 s</span></section>
+
+<section class="cell" id="seams"><div class="frame" style="padding:3cqw"><div class="disp" style="font-size:3cqw">Carte des transitions</div><div class="seams" style="gap:.5cqw"><span style="font-size:1.7cqw;padding:.3cqw .9cqw">01→02</span><span style="font-size:1.7cqw;padding:.3cqw .9cqw">02→03</span><span style="font-size:1.7cqw;padding:.3cqw .9cqw">03→04</span><span style="font-size:1.7cqw;padding:.3cqw .9cqw">04→05</span><span style="font-size:1.7cqw;padding:.3cqw .9cqw">05→06</span><span style="font-size:1.7cqw;padding:.3cqw .9cqw">06→07</span><span style="font-size:1.7cqw;padding:.3cqw .9cqw">07→08</span><span style="font-size:1.7cqw;padding:.3cqw .9cqw">08→09</span><span style="font-size:1.7cqw;padding:.3cqw .9cqw">09→10</span><span style="font-size:1.7cqw;padding:.3cqw .9cqw">10→11</span><span style="font-size:1.7cqw;padding:.3cqw .9cqw">11→12</span><span style="font-size:1.7cqw;padding:.3cqw .9cqw">12→13</span><span style="font-size:1.7cqw;padding:.3cqw .9cqw">13→14</span><span style="font-size:1.7cqw;padding:.3cqw .9cqw">14→fin</span></div></div>
+<div class="label"><span>CARTE DES TRANSITIONS</span><span>direction par défaut : vers la gauche</span></div><p class="note">Volets mécaniques et étincelle ; seul fondu doux à la clôture (13).</p></section>
+<section class="cell" id="tokens"><div class="frame" style="padding:3cqw"><div class="disp" style="font-size:3cqw">Palette et polices</div>
+<div style="margin-top:1.2cqw"><span class="sw" style="font-size:1.6cqw"><i style="background:#0B1B33"></i>#0B1B33</span><span class="sw" style="font-size:1.6cqw"><i style="background:#1F4E96"></i>#1F4E96</span><span class="sw" style="font-size:1.6cqw"><i style="background:#F4F1EA"></i>#F4F1EA</span><span class="sw" style="font-size:1.6cqw"><i style="background:#E2061B"></i>#E2061B</span><span class="sw" style="font-size:1.6cqw"><i style="background:#FF7A1A"></i>#FF7A1A</span><span class="sw" style="font-size:1.6cqw"><i style="background:#2A8C5E"></i>#2A8C5E</span></div>
+<p class="body" style="font-size:1.9cqw;margin-top:2cqw;line-height:1.5">Oswald 700 (titres) · Montserrat 500 (texte) · IBM Plex Mono (étiquettes)<br>Bannis : dégradé plein écran, logo redessiné, textes de photo illisibles.</p></div>
+<div class="label"><span>TOKENS</span><span>frame.md</span></div><p class="note">Les polices s'affichent ici avec une police de secours si elles ne sont pas installées sur votre ordinateur. La vidéo finale embarque les vraies polices.</p></section>
+</div></body></html>

@@ -35,4 +35,4 @@ Vidéo d'accueil et de présentation motion design de l'AFPI Région Dunkerquois
 
 - Le site afpi-formation.com est bloqué par le proxy de l'environnement : contenus issus du prompt, à vérifier par l'utilisateur.
 - Le logo local indique « Pôle Formation Flandre Maritime » ; le prompt cite « Pôle Formation des Industries Technologiques ». À trancher avec l'utilisateur.
-- Contact écran de fin : www.afpi-formation.com · 03 28 60 80 30 · accueil@afpi-formation.com · Centre Jacques Balloy (Dunkerque) · Antenne des Rives de l'Aa (Gravelines). Adresses postales à fournir.
+- Contact écran de fin : www.afpi-formation.com · 03 28 60 80 30 · accueil@afpi-formation.com · Centre Jacques Balloy (Dunkerque) · Antenne des Rives de l'Aa (Gravelines). Adresses : Dunkerque, Z.A.E. du Pont Loby, Rue de Rome, 59640 Dunkerque, tél. 03 28 60 80 30, fax 03 28 61 92 65. Gravelines, Zone de la Leurette, Route du développement, 59820 Gravelines, tél. 03 28 65 59 66, fax 03 28 65 59 69. Courriel : accueil@afpi-formation.com.
