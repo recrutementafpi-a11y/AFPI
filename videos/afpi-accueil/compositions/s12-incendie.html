@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="UTF-8"></head><body>
+<template>
+<style>
+#s12-root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif;font-weight:700;color:#F4F1EA}
+#s12-root *{box-sizing:border-box}
+.abs{position:absolute}
+.disp{font-family:"Oswald",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.01em;line-height:1}
+.mono{font-family:"IBM Plex Mono",monospace;font-weight:400;letter-spacing:.08em;text-transform:uppercase}
+.ac{color:#E2061B} .wm{color:#FF7A1A} .mut{color:#9FB0C8}
+.card{background:#12294B;border-radius:14px}
+
+#s12-root{background:#2B0A08}
+#s12-glow{position:absolute;left:-200px;top:300px;width:1100px;height:900px;border-radius:50%;background:#FF7A1A;opacity:.14}
+.s12st{position:absolute;left:0;width:1920px;height:26px;background:repeating-linear-gradient(135deg,#FF7A1A 0 34px,#2B0A08 34px 68px)}
+#s12-h{position:absolute;left:100px;top:58px;font-size:104px;white-space:nowrap} #s12-h span{color:#FF7A1A}
+.s12c{position:absolute;left:100px;width:640px;height:104px;background:#4A1410;border-radius:12px;display:flex;align-items:center;gap:22px;padding:0 24px;font-size:34px}
+.s12s{position:absolute;left:100px;width:660px;display:flex;gap:22px;align-items:flex-start;font-size:35px;line-height:1.22}
+.s12n{flex:none;width:58px;height:58px;border-radius:50%;background:#FF7A1A;color:#2B0A08;display:flex;align-items:center;justify-content:center;font-size:36px}
+#s12-plan{position:absolute;left:830px;top:190px}
+</style>
+<div id="s12-root" data-composition-id="s12" data-width="1920" data-height="1080" style="">
+
+<div id="s12-glow"></div>
+<div class="s12st" style="top:0"></div><div class="s12st" style="bottom:0"></div>
+<div id="s12-h" class="disp"><span>Sécurité</span> incendie</div>
+<div class="s12c" id="s12-c0" style="top:300px"><svg viewBox="0 0 64 64" width="52" height="52" fill="none" stroke="#FF7A1A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" ><path d="M14 5h28l12 12v42H14z"/><path d="M42 5v12h12M22 30h24M22 40h24M22 50h14"/></svg><div>Consignes et plans d'évacuation affichés</div></div><div class="s12c" id="s12-c1" style="top:430px"><svg viewBox="0 0 64 64" width="52" height="52" fill="none" stroke="#FF7A1A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" ><path d="M32 5l22 8v16c0 14-9 25-22 30C19 54 10 43 10 29V13z"/></svg><div>Matériel vérifié régulièrement</div></div><div class="s12c" id="s12-c2" style="top:560px"><svg viewBox="0 0 64 64" width="52" height="52" fill="none" stroke="#FF7A1A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" ><circle cx="32" cy="16" r="7"/><circle cx="12" cy="24" r="6"/><circle cx="52" cy="24" r="6"/><path d="M18 52c0-12 6-18 14-18s14 6 14 18zM2 50c0-8 4-13 10-13M62 50c0-8-4-13-10-13"/></svg><div>Exercices d'évacuation organisés</div></div><div class="s12s" id="s12-s0" style="top:250px"><div class="s12n disp">1</div><div>Donnez l'alerte ou déclenchez l'alarme</div></div><div class="s12s" id="s12-s1" style="top:372px"><div class="s12n disp">2</div><div>Ne prenez aucun risque</div></div><div class="s12s" id="s12-s2" style="top:470px"><div class="s12n disp">3</div><div>N'ouvrez ni portes ni fenêtres</div></div><div class="s12s" id="s12-s3" style="top:592px"><div class="s12n disp">4</div><div>Rejoignez l'issue de secours la plus proche, sans revenir en arrière</div></div><div class="s12s" id="s12-s4" style="top:744px"><div class="s12n disp">5</div><div>Allez au point de rassemblement et attendez les consignes</div></div>
+<svg id="s12-plan" width="1020" height="700" viewBox="0 0 1020 700">
+ <rect x="10" y="10" width="800" height="640" rx="6" fill="#3B1210" stroke="#F4F1EA" stroke-width="6"/>
+ <path d="M10 330 H300 M300 10 V330 M560 10 V330 M560 330 V650 M300 330 V650" stroke="#F4F1EA" stroke-width="4" opacity=".6" fill="none"/>
+ <text x="40" y="60" fill="#9FB0C8" font-family="IBM Plex Mono" font-size="22">ATELIER</text>
+ <text x="330" y="60" fill="#9FB0C8" font-family="IBM Plex Mono" font-size="22">SALLE</text>
+ <text x="590" y="60" fill="#9FB0C8" font-family="IBM Plex Mono" font-size="22">SALLE</text>
+ <text x="330" y="690" fill="#9FB0C8" font-family="IBM Plex Mono" font-size="22" opacity="0">HALL</text>
+ <g id="s12-fire"><path d="M120 250c4 14 20 20 20 40a20 20 0 0 1-40 0c0-12 7-16 11-27 4 4 6 7 9-13z" fill="#FF7A1A"/><path d="M120 270c3 6 8 9 8 15a8 8 0 0 1-16 0c0-6 4-9 8-15z" fill="#FFE27A"/></g>
+ <g id="s12-door-x" stroke="#FF6B6B" stroke-width="9" stroke-linecap="round"><path d="M270 190 l30 30 M300 190 l-30 30"/><path d="M530 120 l30 30 M560 120 l-30 30"/><path d="M290 430 l30 30 M320 430 l-30 30"/></g>
+ <rect x="806" y="110" width="12" height="80" fill="#3FD08A"/>
+ <path id="s12-path" d="M200 520 L200 270 L690 270 L690 150 L890 150" fill="none" stroke="#FF7A1A" stroke-width="10" stroke-dasharray="22 14" stroke-linecap="round" stroke-linejoin="round"/>
+ <path id="s12-ah" d="M868 124 L906 150 L868 176" fill="none" stroke="#FF7A1A" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+ <g id="s12-you"><circle cx="200" cy="520" r="18" fill="#E2061B"/><circle id="s12-yr" cx="200" cy="520" r="18" fill="none" stroke="#E2061B" stroke-width="4"/></g>
+ <text id="s12-yt" x="232" y="528" fill="#F4F1EA" font-family="IBM Plex Mono" font-size="22">VOUS ÊTES ICI</text>
+ <g id="s12-ass"><circle cx="920" cy="150" r="82" fill="none" stroke="#3FD08A" stroke-width="6" stroke-dasharray="12 10"/><g transform="translate(884 114) scale(1.15)" stroke="#3FD08A" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="16" r="7"/><circle cx="12" cy="24" r="6"/><circle cx="52" cy="24" r="6"/><path d="M18 52c0-12 6-18 14-18s14 6 14 18zM2 50c0-8 4-13 10-13M62 50c0-8-4-13-10-13"/></g></g>
+ <text id="s12-at" x="840" y="270" fill="#3FD08A" font-family="IBM Plex Mono" font-size="22">POINT DE</text><text id="s12-at2" x="840" y="298" fill="#3FD08A" font-family="IBM Plex Mono" font-size="22">RASSEMBLEMENT</text>
+ <g id="s12-bell" transform="translate(690 470)" stroke="#FF7A1A" fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><g transform="scale(1.5)"><path d="M32 6c-10 0-17 8-17 19v13l-7 9h48l-7-9V25C49 14 42 6 32 6z"/><path d="M25 53a7 7 0 0 0 14 0"/></g></g>
+ <circle id="s12-br1" cx="738" cy="518" r="40" fill="none" stroke="#FF7A1A" stroke-width="4"/>
+</svg>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+
+gsap.set(["#s12-door-x path","#s12-ah","#s12-ass","#s12-at","#s12-at2","#s12-yt","#s12-you","#s12-bell","#s12-br1"],{opacity:0});
+tl.fromTo("#s12-h",{x:-120,opacity:0},{x:0,opacity:1,duration:.7,ease:"expo.out"},.5);
+tl.fromTo("#s12-glow",{scale:.9},{scale:1.15,duration:1.6,ease:"sine.inOut",yoyo:true,repeat:13},0);
+tl.to(".s12st",{backgroundPosition:"136px 0",duration:23,ease:"none"},0);
+tl.fromTo("#s12-plan",{opacity:0,x:80},{opacity:1,x:0,duration:.8,ease:"power3.out"},1.52);
+tl.fromTo("#s12-fire",{scale:.2,svgOrigin:"120 290",opacity:0},{scale:1,opacity:1,duration:.6,ease:"back.out(2)"},2.12);
+tl.to("#s12-fire",{scale:1.18,svgOrigin:"120 290",duration:.45,ease:"sine.inOut",yoyo:true,repeat:6},2.72);
+tl.fromTo("#s12-c0",{x:-80,opacity:0},{x:0,opacity:1,duration:.55,ease:"power3.out"},1.72);
+tl.fromTo("#s12-c1",{x:-80,opacity:0},{x:0,opacity:1,duration:.55,ease:"power3.out"},4.52);
+tl.fromTo("#s12-c2",{x:-80,opacity:0},{x:0,opacity:1,duration:.55,ease:"power3.out"},5.68);
+tl.to(["#s12-c0","#s12-c1","#s12-c2"],{opacity:0,x:-60,duration:.4,stagger:.06},6.99);
+tl.fromTo("#s12-s0",{x:-80,opacity:0},{x:0,opacity:1,duration:.5,ease:"power3.out"},7.97);
+tl.to("#s12-bell",{opacity:1,duration:.3},8.17);
+tl.fromTo("#s12-bell",{rotation:-14,svgOrigin:"720 490"},{rotation:14,duration:.12,yoyo:true,repeat:11,ease:"sine.inOut"},8.80);
+tl.fromTo("#s12-br1",{attr:{r:30},opacity:.9},{attr:{r:80},opacity:0,duration:.9,ease:"power2.out",repeat:2,immediateRender:false},8.80);
+tl.to("#s12-bell",{opacity:0,duration:.4},11.27);
+tl.fromTo("#s12-s1",{x:-80,opacity:0},{x:0,opacity:1,duration:.5,ease:"power3.out"},10.17);
+tl.fromTo("#s12-s2",{x:-80,opacity:0},{x:0,opacity:1,duration:.5,ease:"power3.out"},10.80);
+tl.fromTo("#s12-door-x path",{opacity:0,scale:.2,transformOrigin:"center"},{opacity:1,scale:1,duration:.4,stagger:.15,ease:"back.out(3)"},11.00);
+tl.fromTo("#s12-s3",{x:-80,opacity:0},{x:0,opacity:1,duration:.5,ease:"power3.out"},12.98);
+tl.to(["#s12-you","#s12-yt"],{opacity:1,duration:.4},12.78);
+tl.fromTo("#s12-yr",{attr:{r:18},opacity:.9},{attr:{r:46},opacity:0,duration:1,ease:"power2.out",repeat:5,immediateRender:false},12.78);
+tl.fromTo("#s12-path",{strokeDasharray:"1400 1400",strokeDashoffset:1400},{strokeDashoffset:0,duration:3.22,ease:"power1.inOut"},13.18);
+tl.to("#s12-ah",{opacity:1,duration:.3},16.30);
+tl.fromTo("#s12-s4",{x:-80,opacity:0},{x:0,opacity:1,duration:.5,ease:"power3.out"},16.40);
+tl.to(["#s12-ass","#s12-at","#s12-at2"],{opacity:1,duration:.5},16.60);
+tl.fromTo("#s12-ass circle",{scale:.5,svgOrigin:"920 150"},{scale:1,duration:.6,ease:"back.out(2)"},16.60);
+
+window.__timelines["s12"] = tl;
+</script>
+</template></body></html>

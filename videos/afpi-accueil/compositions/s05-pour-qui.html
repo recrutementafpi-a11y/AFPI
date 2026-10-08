@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="UTF-8"></head><body>
+<template>
+<style>
+#s05-root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif;font-weight:700;color:#F4F1EA}
+#s05-root *{box-sizing:border-box}
+.abs{position:absolute}
+.disp{font-family:"Oswald",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.01em;line-height:1}
+.mono{font-family:"IBM Plex Mono",monospace;font-weight:400;letter-spacing:.08em;text-transform:uppercase}
+.ac{color:#E2061B} .wm{color:#FF7A1A} .mut{color:#9FB0C8}
+.card{background:#12294B;border-radius:14px}
+
+#s5-q{position:absolute;left:0;width:1920px;text-align:center;top:100px;font-size:120px}
+#s5-q2{color:#E2061B}
+.s5t{position:absolute;top:330px;width:380px;height:470px;background:#12294B;border-radius:14px;border-top:6px solid #E2061B}
+.s5n{position:absolute;left:24px;top:22px;font-size:22px;color:#9FB0C8}
+.s5ic{position:absolute;left:100px;top:100px;width:180px;height:180px;border:4px solid #F4F1EA;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.s5l{position:absolute;left:20px;right:20px;top:330px;text-align:center;font-size:56px;line-height:1.04}
+</style>
+<div id="s05-root" data-composition-id="s05" data-width="1920" data-height="1080" style="">
+<div id="s5-q" class="disp">Pour <span class="ac">qui</span> ?</div><div id="s5-q2" class="abs disp" style="left:0;width:1920px;text-align:center;top:100px;font-size:120px;opacity:0;color:#F4F1EA">Chacun trouve <span class="ac">sa place</span></div><div class="s5t" id="s5-t0" style="left:140px"><div class="s5n mono">01</div>
+<div class="s5ic"><svg viewBox="0 0 64 64" width="120" height="120" fill="none" stroke="#F4F1EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" ><path d="M6 56V28l15 9V28l15 9V28l15 9V8h9v48z"/><path d="M16 46h6M30 46h6M44 46h6"/></svg></div><div class="s5l disp">Entreprises</div></div><div class="s5t" id="s5-t1" style="left:560px"><div class="s5n mono">02</div>
+<div class="s5ic"><svg viewBox="0 0 64 64" width="120" height="120" fill="none" stroke="#F4F1EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" ><circle cx="32" cy="18" r="9"/><path d="M14 56c0-14 8-20 18-20s18 6 18 20z"/></svg></div><div class="s5l disp">Salariés</div></div><div class="s5t" id="s5-t2" style="left:980px"><div class="s5n mono">03</div>
+<div class="s5ic"><svg viewBox="0 0 64 64" width="120" height="120" fill="none" stroke="#F4F1EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" ><circle cx="27" cy="27" r="17"/><path d="M40 40l18 18"/></svg></div><div class="s5l disp">Demandeurs d'emploi</div></div><div class="s5t" id="s5-t3" style="left:1400px"><div class="s5n mono">04</div>
+<div class="s5ic"><svg viewBox="0 0 64 64" width="120" height="120" fill="none" stroke="#F4F1EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 24l29-13 29 13-29 13z"/><path d="M15 32v13c9 7 25 7 34 0V32M61 25v16"/></svg></div><div class="s5l disp">Jeunes et alternance</div></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#s5-q",{y:-40,opacity:0},{y:0,opacity:1,duration:.6,ease:"expo.out"},.4);
+tl.fromTo("#s5-t0",{y:140,opacity:0,rotation:3},{y:0,opacity:1,rotation:0,duration:.7,ease:"back.out(1.5)"},0.45);
+tl.fromTo("#s5-t0 .s5ic",{scale:.4},{scale:1,duration:.6,ease:"back.out(2)"},0.75);
+tl.fromTo("#s5-t1",{y:140,opacity:0,rotation:3},{y:0,opacity:1,rotation:0,duration:.7,ease:"back.out(1.5)"},1.21);
+tl.fromTo("#s5-t1 .s5ic",{scale:.4},{scale:1,duration:.6,ease:"back.out(2)"},1.51);
+tl.fromTo("#s5-t2",{y:140,opacity:0,rotation:3},{y:0,opacity:1,rotation:0,duration:.7,ease:"back.out(1.5)"},1.73);
+tl.fromTo("#s5-t2 .s5ic",{scale:.4},{scale:1,duration:.6,ease:"back.out(2)"},2.03);
+tl.fromTo("#s5-t3",{y:140,opacity:0,rotation:3},{y:0,opacity:1,rotation:0,duration:.7,ease:"back.out(1.5)"},2.82);
+tl.fromTo("#s5-t3 .s5ic",{scale:.4},{scale:1,duration:.6,ease:"back.out(2)"},3.12);
+tl.to("#s5-q",{opacity:0,y:30,duration:.35},4.2700000000000005);
+tl.fromTo("#s5-q2",{opacity:0,y:-30},{opacity:1,y:0,duration:.6,ease:"expo.out"},4.37);
+tl.to(".s5t",{borderTopColor:"#FF7A1A",duration:.4,stagger:.1},4.57);
+
+window.__timelines["s05"] = tl;
+</script>
+</template></body></html>

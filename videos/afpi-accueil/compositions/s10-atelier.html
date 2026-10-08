@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="UTF-8"></head><body>
+<template>
+<style>
+#s10-root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif;font-weight:700;color:#F4F1EA}
+#s10-root *{box-sizing:border-box}
+.abs{position:absolute}
+.disp{font-family:"Oswald",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.01em;line-height:1}
+.mono{font-family:"IBM Plex Mono",monospace;font-weight:400;letter-spacing:.08em;text-transform:uppercase}
+.ac{color:#E2061B} .wm{color:#FF7A1A} .mut{color:#9FB0C8}
+.card{background:#12294B;border-radius:14px}
+
+.s10p{position:absolute;top:150px;width:540px;height:700px;background:#12294B;border-radius:14px;overflow:hidden;border-bottom:8px solid #1F4E96}
+.s10ph{position:absolute;left:0;top:0;width:540px;height:340px;background-size:cover;background-position:center}
+.s10d{position:absolute;right:22px;top:286px;width:104px;height:104px;border-radius:50%;background:#E2061B;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.45)}
+.s10h{position:absolute;left:30px;right:30px;top:410px;font-size:52px;line-height:1.04}
+.s10s{position:absolute;left:30px;right:30px;top:580px;font-size:29px;font-weight:400;color:#9FB0C8;line-height:1.35}
+.s10r{position:absolute;left:30px;right:30px;height:140px;display:flex;align-items:center;gap:26px;font-size:62px}
+.s10k{width:76px;height:76px;border-radius:50%;background:#2A8C5E;display:flex;align-items:center;justify-content:center;flex:none}
+#s10-k{position:absolute;left:120px;top:56px;font-size:24px;color:#FF7A1A}
+</style>
+<div id="s10-root" data-composition-id="s10" data-width="1920" data-height="1080" style="">
+
+<div id="s10-k" class="mono">En atelier · 3 réflexes</div>
+<div class="s10p" id="s10-p1" style="left:120px"><div class="s10ph" style="background-image:url(assets/img/deux-techniciens-tablette.jpg);background-position:50% 30%"></div>
+ <div class="s10d"><svg viewBox="0 0 64 64" width="58" height="58" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 52L40 24M36 12l16 16-8 8-16-16z"/><path d="M8 56l8-2-6-6z"/></svg><svg style="position:absolute;inset:0" viewBox="0 0 104 104"><path d="M18 18 L86 86" stroke="#fff" stroke-width="7" stroke-linecap="round"/></svg></div>
+ <div class="s10h disp">Pas de machine sans formation</div><div class="s10s">Autorisation du formateur obligatoire.</div></div>
+<div class="s10p" id="s10-p2" style="left:690px"><div class="s10ph" style="background-image:url(assets/img/responsable-talkie.jpg);background-position:70% 30%"></div>
+ <div class="s10d"><svg viewBox="0 0 64 64" width="58" height="58" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" ><path d="M14 6h12l5 13-8 5c4 9 9 14 17 17l5-8 13 5v12c0 4-4 8-9 8C28 58 6 36 6 15c0-5 4-9 8-9z"/></svg></div>
+ <div class="s10h disp">Accident ? Prévenez le responsable</div><div class="s10s">Il appellera les secours.</div></div>
+<div class="s10p" id="s10-p3" style="left:1260px"><div class="s10h disp" style="top:40px;font-size:44px;color:#FF7A1A">Toujours</div><div class="s10r" id="s10-r0" style="top:150px"><div class="s10k"><svg viewBox="0 0 64 64" width="40" height="40" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" ><path d="M9 34l16 16 30-32"/></svg></div><div class="disp">Ordre</div></div><div class="s10r" id="s10-r1" style="top:320px"><div class="s10k"><svg viewBox="0 0 64 64" width="40" height="40" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" ><path d="M9 34l16 16 30-32"/></svg></div><div class="disp">Propreté</div></div><div class="s10r" id="s10-r2" style="top:490px"><div class="s10k"><svg viewBox="0 0 64 64" width="40" height="40" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" ><path d="M9 34l16 16 30-32"/></svg></div><div class="disp">Rangement</div></div></div>
+
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo("#s10-k",{opacity:0},{opacity:1,duration:.5},.5);
+tl.fromTo("#s10-p1",{y:120,opacity:0},{y:0,opacity:1,duration:.7,ease:"power4.out"},1.03);
+tl.fromTo("#s10-p1 .s10ph",{scale:1.2},{scale:1,duration:4,ease:"power1.out"},1.03);
+tl.fromTo("#s10-p1 .s10d",{scale:0},{scale:1,duration:.5,ease:"back.out(2.5)"},1.93);
+tl.fromTo("#s10-p2",{y:120,opacity:0},{y:0,opacity:1,duration:.7,ease:"power4.out"},5.69);
+tl.fromTo("#s10-p2 .s10ph",{scale:1.2},{scale:1,duration:4,ease:"power1.out"},5.69);
+tl.fromTo("#s10-p2 .s10d",{scale:0},{scale:1,duration:.5,ease:"back.out(2.5)"},7.37);
+tl.to("#s10-p1",{borderBottomColor:"#E2061B",duration:.3},1.33);
+tl.to("#s10-p1",{borderBottomColor:"#1F4E96",duration:.3},5.99);
+tl.to("#s10-p2",{borderBottomColor:"#E2061B",duration:.3},5.99);
+tl.to("#s10-p2",{borderBottomColor:"#1F4E96",duration:.3},9.80);
+tl.fromTo("#s10-p3",{y:120,opacity:0},{y:0,opacity:1,duration:.7,ease:"power4.out"},9.60);
+tl.fromTo("#s10-r0",{x:80,opacity:0},{x:0,opacity:1,duration:.5,ease:"back.out(1.5)"},10.00);
+tl.fromTo("#s10-r1",{x:80,opacity:0},{x:0,opacity:1,duration:.5,ease:"back.out(1.5)"},10.32);
+tl.fromTo("#s10-r2",{x:80,opacity:0},{x:0,opacity:1,duration:.5,ease:"back.out(1.5)"},10.84);
+
+window.__timelines["s10"] = tl;
+</script>
+</template></body></html>

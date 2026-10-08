@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="UTF-8"></head><body>
+<template>
+<style>
+#s14-root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif;font-weight:700;color:#F4F1EA}
+#s14-root *{box-sizing:border-box}
+.abs{position:absolute}
+.disp{font-family:"Oswald",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.01em;line-height:1}
+.mono{font-family:"IBM Plex Mono",monospace;font-weight:400;letter-spacing:.08em;text-transform:uppercase}
+.ac{color:#E2061B} .wm{color:#FF7A1A} .mut{color:#9FB0C8}
+.card{background:#12294B;border-radius:14px}
+
+#s14-logo{position:absolute;left:120px;top:90px;width:640px;height:284px;background:#fff;border-radius:14px;overflow:hidden}
+.s14h{position:absolute;inset:0;background:url(assets/img/logo-afpi.png) center/contain no-repeat}
+#s14-l{clip-path:inset(0 47.5% 0 0)} #s14-r{clip-path:inset(0 0 0 52.5%)}
+#s14-url{position:absolute;left:120px;top:430px;font-size:78px;white-space:nowrap}
+#s14-bar{position:absolute;left:124px;top:545px;width:300px;height:8px;background:#E2061B;transform-origin:left center}
+.s14r{position:absolute;left:120px;display:flex;align-items:center;gap:26px}
+#s14-ph{top:600px;font-size:74px;color:#F4F1EA} #s14-ph span{color:#E2061B}
+#s14-ml{top:720px;font-size:46px;color:#F4F1EA}
+.s14c{position:absolute;left:1020px;width:790px;height:330px;background:#12294B;border-radius:14px;overflow:hidden;border-left:8px solid #E2061B}
+.s14c .im{position:absolute;left:0;top:0;width:300px;height:330px;background-size:cover;background-position:center}
+.s14c .tx{position:absolute;left:326px;top:30px;right:20px}
+.s14c .t1{font-size:44px;line-height:1.02} .s14c .t2{font-size:25px;font-weight:400;color:#F4F1EA;line-height:1.4;margin-top:14px} .s14c .t3{font-size:30px;color:#FF7A1A;margin-top:12px}
+#s14-fade{position:absolute;inset:0;background:#0B1B33;opacity:0}
+</style>
+<div id="s14-root" data-composition-id="s14" data-width="1920" data-height="1080" style="">
+
+<div id="s14-logo"><div class="s14h" id="s14-l"></div><div class="s14h" id="s14-r"></div></div>
+<div id="s14-url" class="disp">www.afpi-formation.com</div><div id="s14-bar"></div>
+<div id="s14-ph" class="s14r disp"><svg viewBox="0 0 64 64" width="62" height="62" fill="none" stroke="#E2061B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" ><path d="M14 6h12l5 13-8 5c4 9 9 14 17 17l5-8 13 5v12c0 4-4 8-9 8C28 58 6 36 6 15c0-5 4-9 8-9z"/></svg><span>03 28 60 80 30</span></div>
+<div id="s14-ml" class="s14r"><svg viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="#F4F1EA" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" ><rect x="5" y="12" width="54" height="40" rx="4"/><path d="M5 16l27 21 27-21"/></svg><span>accueil@afpi-formation.com</span></div>
+<div class="s14c" id="s14-c1" style="top:120px"><div class="im" style="background-image:url(assets/img/facade-dunkerque.jpg)"></div><div class="tx"><div class="t1 disp">Dunkerque</div><div class="t2">Centre Jacques Balloy<br>Z.A.E. du Pont Loby, Rue de Rome<br>59640 Dunkerque</div><div class="t3">Tél. 03 28 60 80 30</div></div></div>
+<div class="s14c" id="s14-c2" style="top:520px"><div class="im" style="background-image:url(assets/img/facade-gravelines.jpg)"></div><div class="tx"><div class="t1 disp">Gravelines</div><div class="t2">Antenne des Rives de l'Aa<br>Zone de la Leurette, Route du développement<br>59820 Gravelines</div><div class="t3">Tél. 03 28 65 59 66</div></div></div>
+<div id="s14-fade"></div>
+
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo("#s14-logo",{scale:.8,opacity:0},{scale:1,opacity:1,duration:.7,ease:"power3.out"},.4);
+tl.fromTo("#s14-l",{x:-200},{x:0,duration:.6,ease:"power4.out"},.7);
+tl.fromTo("#s14-r",{x:200},{x:0,duration:.6,ease:"power4.out"},.7);
+tl.fromTo("#s14-url",{x:-120,opacity:0},{x:0,opacity:1,duration:.7,ease:"expo.out"},1.0);
+tl.fromTo("#s14-bar",{scaleX:0},{scaleX:1,duration:.6,ease:"power3.inOut"},1.5);
+tl.fromTo("#s14-ph",{x:-80,opacity:0},{x:0,opacity:1,duration:.6,ease:"power3.out"},2.4);
+tl.fromTo("#s14-ml",{x:-80,opacity:0},{x:0,opacity:1,duration:.6,ease:"power3.out"},2.9);
+tl.fromTo("#s14-c1",{x:140,opacity:0},{x:0,opacity:1,duration:.7,ease:"power4.out"},2.2);
+tl.fromTo("#s14-c2",{x:140,opacity:0},{x:0,opacity:1,duration:.7,ease:"power4.out"},2.8);
+tl.fromTo("#s14-fade",{opacity:0},{opacity:1,duration:.7,ease:"power1.in"},7.4);
+
+window.__timelines["s14"] = tl;
+</script>
+</template></body></html>
