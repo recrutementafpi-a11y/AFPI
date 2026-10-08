@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="UTF-8"></head><body>
+<template>
+<style>
+#s07-root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif;font-weight:700;color:#0B1B33}
+#s07-root *{box-sizing:border-box}
+.abs{position:absolute}
+.disp{font-family:"Oswald",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.01em;line-height:1}
+.mono{font-family:"IBM Plex Mono",monospace;font-weight:400;letter-spacing:.08em;text-transform:uppercase}
+.ac{color:#E2061B} .wm{color:#F26A00} .mut{color:#4A5C78}
+.card{background:#FFFFFF;border-radius:14px;box-shadow:0 10px 34px rgba(31,78,150,.16)}
+
+#s07-root{background:#1F4E96}
+.s7w{position:absolute;left:130px;font-size:250px;color:#fff;white-space:nowrap}
+.s7m{position:absolute;left:0;width:1920px;overflow:hidden;height:250px}
+#s7-k{position:absolute;left:136px;top:110px;font-size:28px;color:#fff}
+#s7-bar{position:absolute;left:136px;top:950px;width:420px;height:10px;background:#fff;transform-origin:left center}
+#s7-ic{position:absolute;left:1380px;top:560px}
+#s7-g{position:absolute;left:1180px;top:-90px}
+</style>
+<div id="s07-root" data-composition-id="s07" data-width="1920" data-height="1080" style="">
+
+<div id="s7-g"><svg width="820" height="820" viewBox="0 0 820 820" style="opacity:0.18"><path d="M729.8 410.0 L801.7 448.6 L796.0 486.8 L716.0 502.8 L705.5 532.4 L757.1 595.5 L737.3 628.7 L657.2 612.9 L636.1 636.1 L659.7 714.3 L628.7 737.3 L560.8 692.0 L532.4 705.5 L524.3 786.7 L486.8 796.0 L441.3 728.3 L410.0 729.8 L371.4 801.7 L333.2 796.0 L317.2 716.0 L287.6 705.5 L224.5 757.1 L191.3 737.3 L207.1 657.2 L183.9 636.1 L105.7 659.7 L82.7 628.7 L128.0 560.8 L114.5 532.4 L33.3 524.3 L24.0 486.8 L91.7 441.3 L90.2 410.0 L18.3 371.4 L24.0 333.2 L104.0 317.2 L114.5 287.6 L62.9 224.5 L82.7 191.3 L162.8 207.1 L183.9 183.9 L160.3 105.7 L191.3 82.7 L259.2 128.0 L287.6 114.5 L295.7 33.3 L333.2 24.0 L378.7 91.7 L410.0 90.2 L448.6 18.3 L486.8 24.0 L502.8 104.0 L532.4 114.5 L595.5 62.9 L628.7 82.7 L612.9 162.8 L636.1 183.9 L714.3 160.3 L737.3 191.3 L692.0 259.2 L705.5 287.6 L786.7 295.7 L796.0 333.2 L728.3 378.7 Z M524.8 410.0 A114.80000000000001 114.80000000000001 0 1 0 295.2 410.0 A114.80000000000001 114.80000000000001 0 1 0 524.8 410.0 Z" fill="none" stroke="#fff" stroke-width="4" fill-rule="evenodd"/></svg></div>
+<div id="s7-k" class="mono">Partie 2</div>
+<div class="s7m" style="top:170px"><div class="s7w disp" id="s7-w1" style="top:0">Votre</div></div>
+<div class="s7m" style="top:410px"><div class="s7w disp" id="s7-w2" style="top:0">arrivée</div></div>
+<div class="s7m" style="top:650px"><div class="s7w disp" id="s7-w3" style="top:0">au centre</div></div>
+<div id="s7-bar"></div>
+<div id="s7-ic"><svg viewBox="0 0 64 64" width="330" height="330" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" ><path d="M10 6h26v52H10z"/><path d="M36 32h22M48 22l10 10-10 10"/></svg></div>
+
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo("#s7-k",{opacity:0,x:-40},{opacity:1,x:0,duration:.5,ease:"power3.out"},.5);
+tl.fromTo("#s7-w1",{y:300},{y:0,duration:.65,ease:"expo.out"},.55);
+tl.fromTo("#s7-w2",{y:300},{y:0,duration:.65,ease:"expo.out"},.75);
+tl.fromTo("#s7-w3",{y:300},{y:0,duration:.65,ease:"expo.out"},.95);
+tl.fromTo("#s7-bar",{scaleX:0},{scaleX:1,duration:.8,ease:"power3.inOut"},1.5);
+tl.fromTo("#s7-ic",{opacity:0,x:-140},{opacity:1,x:0,duration:.8,ease:"power3.out"},1.2);
+tl.to("#s7-ic",{x:30,duration:1.2,ease:"sine.inOut",yoyo:true,repeat:1},2.1);
+tl.fromTo("#s7-g",{rotation:0},{rotation:50,duration:5,ease:"none"},0);
+
+window.__timelines["s07"] = tl;
+</script>
+</template></body></html>

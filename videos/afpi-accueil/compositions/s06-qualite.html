@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="UTF-8"></head><body>
+<template>
+<style>
+#s06-root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif;font-weight:700;color:#0B1B33}
+#s06-root *{box-sizing:border-box}
+.abs{position:absolute}
+.disp{font-family:"Oswald",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.01em;line-height:1}
+.mono{font-family:"IBM Plex Mono",monospace;font-weight:400;letter-spacing:.08em;text-transform:uppercase}
+.ac{color:#E2061B} .wm{color:#F26A00} .mut{color:#4A5C78}
+.card{background:#FFFFFF;border-radius:14px;box-shadow:0 10px 34px rgba(31,78,150,.16)}
+
+#s6-h{position:absolute;left:0;width:1920px;text-align:center;top:120px;font-size:112px}
+.s6b{position:absolute;top:360px;width:300px;text-align:center}
+.s6ring{width:260px;height:260px;margin:0 auto;border-radius:50%;border:8px solid #1F4E96;display:flex;align-items:center;justify-content:center;background:#FFFFFF;box-shadow:0 0 0 8px #F3F7FD,0 0 0 12px #1F4E96}
+.s6in{width:210px;text-align:center} .s6n{font-size:46px;line-height:1.02}
+.s6s{margin-top:34px;font-size:27px;font-weight:400;color:#4A5C78;line-height:1.3;padding:0 4px}
+#s6-chk{position:absolute}
+</style>
+<div id="s06-root" data-composition-id="s06" data-width="1920" data-height="1080" style="">
+<div id="s6-h" class="disp">Une qualité <span class="ac">reconnue</span></div><div class="s6b" id="s6-b0" style="left:110px"><div class="s6ring"><div class="s6in"><div class="s6n disp">Qualiopi</div></div></div><div class="s6s">Qualité des actions de formation</div></div><div class="s6b" id="s6-b1" style="left:450px"><div class="s6ring"><div class="s6in"><div class="s6n disp">CQPM</div></div></div><div class="s6s">Certificat de qualification paritaire de la métallurgie</div></div><div class="s6b" id="s6-b2" style="left:790px"><div class="s6ring"><div class="s6in"><div class="s6n disp">TOSA</div></div></div><div class="s6s">Bureautique et compétences numériques</div></div><div class="s6b" id="s6-b3" style="left:1130px"><div class="s6ring"><div class="s6in"><div class="s6n disp">TOEIC</div></div></div><div class="s6s">Anglais professionnel</div></div><div class="s6b" id="s6-b4" style="left:1470px"><div class="s6ring"><div class="s6in"><div class="s6n disp">Certificat Voltaire</div></div></div><div class="s6s">Orthographe et expression écrite</div></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#s6-h",{y:-50,opacity:0},{y:0,opacity:1,duration:.6,ease:"expo.out"},0.51);
+tl.fromTo("#s6-b0",{scale:1.9,opacity:0,rotation:-8},{scale:1,opacity:1,rotation:0,duration:.5,ease:"back.out(1.4)"},2.10);
+tl.fromTo("#s6-b0 .s6ring",{boxShadow:"0 0 0 8px #F3F7FD,0 0 0 12px #1F4E96"},{boxShadow:"0 0 0 8px #F3F7FD,0 0 0 22px #F26A00",duration:.18,yoyo:true,repeat:1},2.55);
+tl.fromTo("#s6-b1",{scale:1.9,opacity:0,rotation:-8},{scale:1,opacity:1,rotation:0,duration:.5,ease:"back.out(1.4)"},3.04);
+tl.fromTo("#s6-b1 .s6ring",{boxShadow:"0 0 0 8px #F3F7FD,0 0 0 12px #1F4E96"},{boxShadow:"0 0 0 8px #F3F7FD,0 0 0 22px #F26A00",duration:.18,yoyo:true,repeat:1},3.49);
+tl.fromTo("#s6-b2",{scale:1.9,opacity:0,rotation:-8},{scale:1,opacity:1,rotation:0,duration:.5,ease:"back.out(1.4)"},4.30);
+tl.fromTo("#s6-b2 .s6ring",{boxShadow:"0 0 0 8px #F3F7FD,0 0 0 12px #1F4E96"},{boxShadow:"0 0 0 8px #F3F7FD,0 0 0 22px #F26A00",duration:.18,yoyo:true,repeat:1},4.75);
+tl.fromTo("#s6-b3",{scale:1.9,opacity:0,rotation:-8},{scale:1,opacity:1,rotation:0,duration:.5,ease:"back.out(1.4)"},5.09);
+tl.fromTo("#s6-b3 .s6ring",{boxShadow:"0 0 0 8px #F3F7FD,0 0 0 12px #1F4E96"},{boxShadow:"0 0 0 8px #F3F7FD,0 0 0 22px #F26A00",duration:.18,yoyo:true,repeat:1},5.54);
+tl.fromTo("#s6-b4",{scale:1.9,opacity:0,rotation:-8},{scale:1,opacity:1,rotation:0,duration:.5,ease:"back.out(1.4)"},5.88);
+tl.fromTo("#s6-b4 .s6ring",{boxShadow:"0 0 0 8px #F3F7FD,0 0 0 12px #1F4E96"},{boxShadow:"0 0 0 8px #F3F7FD,0 0 0 22px #F26A00",duration:.18,yoyo:true,repeat:1},6.33);
+
+window.__timelines["s06"] = tl;
+</script>
+</template></body></html>
