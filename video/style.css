@@ -1,0 +1,55 @@
+:root{
+  --blue:#1E4E98; --cyan:#17A3DD; --navy:#0A2347; --navy2:#0F2F63; --uimm:#10567A;
+  --green:#288967; --red:#E2071B; --orange:#FF6B00; --white:#fff; --obl:#1767C8; --eva:#1C9A5B;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#000;width:100%;height:100%;overflow:hidden}
+body{font-family:"Inter","Segoe UI","Helvetica Neue",Arial,sans-serif;color:var(--white);-webkit-font-smoothing:antialiased}
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--navy);transform-origin:0 0}
+#bg{position:absolute;inset:-80px;background:
+  radial-gradient(ellipse at 30% 20%,rgba(30,78,152,.55),transparent 60%),
+  linear-gradient(rgba(23,163,221,.10) 2px,transparent 2px) 0 0/80px 80px,
+  linear-gradient(90deg,rgba(23,163,221,.10) 2px,transparent 2px) 0 0/80px 80px,
+  linear-gradient(rgba(23,163,221,.05) 1px,transparent 1px) 0 0/16px 16px,
+  linear-gradient(90deg,rgba(23,163,221,.05) 1px,transparent 1px) 0 0/16px 16px,
+  var(--navy)}
+.scene{position:absolute;inset:0;display:none;overflow:hidden}
+.a{position:absolute}
+.t{position:absolute;white-space:nowrap;font-weight:800;line-height:1.05;letter-spacing:-.01em}
+.ic{fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;display:block}
+.dr{stroke-dasharray:1 2}
+.bp{fill:none;stroke:var(--cyan);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+.bp .dr,.bp.dr{stroke-dasharray:1 2}
+.chip{position:absolute;white-space:nowrap;font-weight:700;border:3px solid var(--cyan);background:rgba(23,163,221,.16);border-radius:100px;padding:6px 22px;color:#fff}
+.chip.o{border-color:var(--orange);background:rgba(255,107,0,.16)}
+.card{position:absolute;background:rgba(255,255,255,.07);border:2px solid rgba(23,163,221,.55);border-radius:6px}
+.white{background:#fff;color:var(--navy)}
+.frame{position:absolute;filter:none}
+.frame .cut{position:absolute;inset:0;overflow:hidden;background:#13294f}
+.frame .rv{position:absolute;inset:0;overflow:hidden}
+.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.06) brightness(.96);transform-origin:50% 50%}
+.frame .tint{position:absolute;inset:0;background:linear-gradient(135deg,rgba(30,78,152,.38),rgba(23,163,221,.12) 60%,rgba(10,35,71,.25));pointer-events:none}
+.frame .miss{position:absolute;inset:0;background:repeating-linear-gradient(45deg,#1c3a6e 0 18px,#183262 18px 36px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#9fc4ee;font-weight:700;text-align:center;padding:12px}
+.frame .miss b{font-size:26px;letter-spacing:.08em}
+.frame .miss i{font-style:normal;font-size:24px;font-weight:600;color:#fff}
+.vwin{position:absolute}
+.vwin .cut{position:absolute;inset:0;overflow:hidden}
+.vwin .vi{position:absolute;inset:0;background:#7d838c}
+.vwin .vl{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#2b3138;font-weight:800;text-align:center}
+.vwin .vl b{font-size:40px;letter-spacing:.12em}
+.vwin .vl span{font-size:30px;font-weight:700}
+.vwin .vl small{font-size:24px;font-weight:600;opacity:.8}
+.nolabels .vl,.nolabels .miss{visibility:hidden}
+#band{position:absolute;left:0;right:0;bottom:0;height:52px;background:rgba(6,22,48,.78);display:none;align-items:center;padding:0 48px;font-size:22px;font-weight:600;letter-spacing:.04em;color:#cfe3f7;border-top:2px solid rgba(23,163,221,.45)}
+#band .n{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--cyan);color:var(--navy);font-weight:800;margin-right:14px;font-size:20px}
+#band .r{margin-left:auto;opacity:.65;font-weight:500}
+#title{position:absolute;inset:0;display:none;background:linear-gradient(120deg,var(--blue),var(--navy2) 70%);overflow:hidden}
+#wipe{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+#wipe div{position:absolute;top:-100px;height:1300px;transform-origin:50% 0}
+.sign{position:absolute;display:flex;align-items:center;justify-content:center}
+.sign.obl{border-radius:50%;background:var(--obl);color:#fff}
+.sign.int{border-radius:50%;background:#fff;border:12px solid var(--red);color:var(--navy)}
+.sign.eva{border-radius:22%;background:var(--eva);color:#fff}
+.sign .bar{position:absolute;left:50%;top:50%;height:12px;background:var(--red);border-radius:6px;transform-origin:50% 50%}
+
+svg.k{fill:none;stroke-linecap:round;stroke-linejoin:round;overflow:visible}

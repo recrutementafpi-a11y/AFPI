@@ -1,0 +1,20 @@
+{
+  "_doc": "Minutages en secondes. Les animations internes de chaque scène sont étirées/compressées pour tenir entre start et end. Mettre à jour d'après le SRT, puis relancer le rendu.",
+  "scenes": {
+    "s1":  { "start": 0.0,   "end": 7.0 },
+    "s2":  { "start": 7.0,   "end": 21.0 },
+    "s3":  { "start": 21.0,  "end": 46.0 },
+    "s4":  { "start": 46.0,  "end": 58.0 },
+    "s5":  { "start": 58.0,  "end": 76.0 },
+    "s6":  { "start": 76.0,  "end": 104.0 },
+    "s7":  { "start": 104.0, "end": 126.0 },
+    "s8":  { "start": 126.0, "end": 142.0 },
+    "s9":  { "start": 142.0, "end": 161.0 },
+    "s10": { "start": 161.0, "end": 179.0 },
+    "fin": { "start": 179.0, "end": 184.0 }
+  },
+  "intertitres": {
+    "ch1": { "start": 7.0,  "end": 9.2 },
+    "ch2": { "start": 76.0, "end": 78.2 }
+  }
+}
