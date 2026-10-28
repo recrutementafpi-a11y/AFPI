@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.afpi-formation.com)",
+      "WebFetch(domain:afpi-formation.com)"
+    ]
+  }
+}
